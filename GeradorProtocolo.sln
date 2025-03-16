@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35828.75 d17.13
+VisualStudioVersion = 17.13.35828.75
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeradorProtocolo", "GeradorProtocolo\GeradorProtocolo.csproj", "{B837BB21-1B91-4EE9-9914-77AAF3218FD7}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Gerador de Protocolos", "Gerador de Protocolos\Gerador de Protocolos.vdproj", "{10618845-5030-5EE1-0563-EA02EE2E35F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

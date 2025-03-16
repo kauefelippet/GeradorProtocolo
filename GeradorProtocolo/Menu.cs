@@ -109,8 +109,8 @@ namespace GeradorProtocolo
 
         private void textBox_Valor_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Allow only numbers, ., and backspace.
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            // Allow only numbers, ., ,, and backspace.
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',')
             {
                 e.Handled = true;
             }

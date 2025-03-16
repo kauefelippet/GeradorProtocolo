@@ -132,7 +132,7 @@ namespace GeradorProtocolo.Util
                                 column.Item().Text($"{Retirada:dd/MM/yyyy}        Parte(s): {item.NomeParte}").FontSize(12).Bold().FontFamily("Century Gothic");
                                 column.Item().Text($"{Contador} de {totalProtocoloLivro}                 {item.TipoRegistro}:  {item.Descricao}  -  Valor: R$ {item.Valor}  -  {Atendente}").FontSize(12).Bold().FontFamily("Century Gothic");
                                 column.Item().Text($"                              Recibo: {item.Requerente}  -  Solicitação: {DateTime.Now:dd/mm HH:mm}").FontSize(11).FontFamily("Century Gothic");
-                                column.Item().Text($"                              Recibo Provisório nº {IdProvisorio}").FontSize(11).FontFamily("Century Gothic");
+                                if (IdProvisorio.HasValue) column.Item().Text($"                              Recibo Provisório nº {IdProvisorio}").FontSize(11).FontFamily("Century Gothic");
                                 column.Item().Text("_________________________________________________________________________________________").AlignCenter().FontSize(12).Bold().FontFamily("Century Gothic");
                             });
                         });

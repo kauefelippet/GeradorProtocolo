@@ -21,21 +21,22 @@ namespace GeradorProtocolo
             ApplicationConfiguration.Initialize();
             Application.Run(new Menu());
 
+            // DEBUG
 
-            BindingList<Item> itens = new();
-            itens.Add(new Item
-            {
-                Requerente = "Cliente da Silva",
-                CpfCnpj = "123.123.123-11",
-                TipoRegistro = "CERTIDÃO EM INTEIRO TEOR",
-                NomeParte = "Cliente da Silva e Silva da Cliente",
-                Descricao = "Averbação de Retificação L B-12, fls. 11, n 999",
-                Valor = 4500.02,
-                Quantidade = 2,
-                ProtocoloLivro = true
-            });
-            ProtocoloRetiradaPdfDocument document = new(itens, DateOnly.FromDateTime(DateTime.Now), "Kaue");
-            document.ShowInCompanion();
+            //BindingList<Item> itens = new();
+            //itens.Add(new Item
+            //{
+            //    Requerente = "Cliente da Silva",
+            //    CpfCnpj = "123.123.123-11",
+            //    TipoRegistro = "CERTIDÃO EM INTEIRO TEOR",
+            //    NomeParte = "Cliente da Silva e Silva da Cliente",
+            //    Descricao = "Averbação de Retificação L B-12, fls. 11, n 999",
+            //    Valor = 4500.02,
+            //    Quantidade = 2,
+            //    ProtocoloLivro = true
+            //});
+            //ProtocoloRetiradaPdfDocument document = new(itens, DateOnly.FromDateTime(DateTime.Now), "Kaue");
+            //document.ShowInCompanion();
         }
     }
 }
