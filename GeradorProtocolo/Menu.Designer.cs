@@ -1,0 +1,556 @@
+﻿namespace GeradorProtocolo
+{
+    partial class Menu
+    {
+        /// <summary>
+        ///  Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        ///  Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        ///  Required method for Designer support - do not modify
+        ///  the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
+            label_Requerente = new Label();
+            textBox_Requerente = new TextBox();
+            label_CpfCnpj = new Label();
+            textBox_CpfCnpj = new TextBox();
+            panel1 = new Panel();
+            checkBox_ProtocoloLivro = new CheckBox();
+            button_Gerar = new Button();
+            button_Remover = new Button();
+            button_Adicionar = new Button();
+            dataGridView = new DataGridView();
+            label_RetiradaCertidao = new Label();
+            datePicker_Retirada = new DateTimePicker();
+            textBox_TipoRegistro = new TextBox();
+            label_Ato = new Label();
+            textBox_Descricao = new TextBox();
+            label_RefRegistro = new Label();
+            numericUpDown_Certidao = new NumericUpDown();
+            label_Quantidade = new Label();
+            textBox_Valor = new TextBox();
+            label_ValorCertidao = new Label();
+            textBox_PartesCertidao = new TextBox();
+            label_RegistradoCertidao = new Label();
+            label_Servico = new Label();
+            textBox_ReciboProv = new TextBox();
+            checkBox_ReciboProvisorio = new CheckBox();
+            label_NumeroReciboProv = new Label();
+            label_Total = new Label();
+            label_Atendente = new Label();
+            textBox_Atendente = new TextBox();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown_Certidao).BeginInit();
+            SuspendLayout();
+            // 
+            // label_Requerente
+            // 
+            label_Requerente.Anchor = AnchorStyles.Left;
+            label_Requerente.AutoSize = true;
+            label_Requerente.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label_Requerente.ForeColor = Color.Black;
+            label_Requerente.Location = new Point(12, 10);
+            label_Requerente.Name = "label_Requerente";
+            label_Requerente.Size = new Size(81, 17);
+            label_Requerente.TabIndex = 0;
+            label_Requerente.Text = "Requerente:";
+            label_Requerente.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBox_Requerente
+            // 
+            textBox_Requerente.BackColor = SystemColors.ControlLight;
+            textBox_Requerente.BorderStyle = BorderStyle.None;
+            textBox_Requerente.CharacterCasing = CharacterCasing.Upper;
+            textBox_Requerente.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox_Requerente.ForeColor = Color.Black;
+            textBox_Requerente.Location = new Point(96, 10);
+            textBox_Requerente.Name = "textBox_Requerente";
+            textBox_Requerente.Size = new Size(400, 18);
+            textBox_Requerente.TabIndex = 0;
+            // 
+            // label_CpfCnpj
+            // 
+            label_CpfCnpj.Anchor = AnchorStyles.Left;
+            label_CpfCnpj.AutoSize = true;
+            label_CpfCnpj.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label_CpfCnpj.ForeColor = Color.Black;
+            label_CpfCnpj.Location = new Point(12, 30);
+            label_CpfCnpj.Name = "label_CpfCnpj";
+            label_CpfCnpj.Size = new Size(77, 17);
+            label_CpfCnpj.TabIndex = 2;
+            label_CpfCnpj.Text = "CPF / CNPJ:";
+            label_CpfCnpj.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBox_CpfCnpj
+            // 
+            textBox_CpfCnpj.BackColor = SystemColors.ControlLight;
+            textBox_CpfCnpj.BorderStyle = BorderStyle.None;
+            textBox_CpfCnpj.CharacterCasing = CharacterCasing.Upper;
+            textBox_CpfCnpj.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox_CpfCnpj.ForeColor = Color.Black;
+            textBox_CpfCnpj.Location = new Point(96, 30);
+            textBox_CpfCnpj.Name = "textBox_CpfCnpj";
+            textBox_CpfCnpj.Size = new Size(200, 18);
+            textBox_CpfCnpj.TabIndex = 3;
+            textBox_CpfCnpj.KeyPress += textBox_CpfCnpj_KeyPress;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(checkBox_ProtocoloLivro);
+            panel1.Controls.Add(button_Gerar);
+            panel1.Controls.Add(button_Remover);
+            panel1.Controls.Add(button_Adicionar);
+            panel1.Controls.Add(dataGridView);
+            panel1.Controls.Add(label_RetiradaCertidao);
+            panel1.Controls.Add(datePicker_Retirada);
+            panel1.Controls.Add(textBox_TipoRegistro);
+            panel1.Controls.Add(label_Ato);
+            panel1.Controls.Add(textBox_Descricao);
+            panel1.Controls.Add(label_RefRegistro);
+            panel1.Controls.Add(numericUpDown_Certidao);
+            panel1.Controls.Add(label_Quantidade);
+            panel1.Controls.Add(textBox_Valor);
+            panel1.Controls.Add(label_ValorCertidao);
+            panel1.Controls.Add(textBox_PartesCertidao);
+            panel1.Controls.Add(label_RegistradoCertidao);
+            panel1.Controls.Add(label_Servico);
+            panel1.Location = new Point(12, 50);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(760, 399);
+            panel1.TabIndex = 4;
+            // 
+            // checkBox_ProtocoloLivro
+            // 
+            checkBox_ProtocoloLivro.AutoSize = true;
+            checkBox_ProtocoloLivro.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            checkBox_ProtocoloLivro.Location = new Point(290, 35);
+            checkBox_ProtocoloLivro.Name = "checkBox_ProtocoloLivro";
+            checkBox_ProtocoloLivro.Size = new Size(133, 19);
+            checkBox_ProtocoloLivro.TabIndex = 6;
+            checkBox_ProtocoloLivro.Text = "Protocolo para Livro";
+            checkBox_ProtocoloLivro.UseVisualStyleBackColor = true;
+            checkBox_ProtocoloLivro.KeyDown += checkBox_ProtocoloLivro_KeyDown;
+            // 
+            // button_Gerar
+            // 
+            button_Gerar.BackColor = SystemColors.ControlLight;
+            button_Gerar.FlatAppearance.BorderSize = 0;
+            button_Gerar.FlatStyle = FlatStyle.Flat;
+            button_Gerar.Location = new Point(169, 174);
+            button_Gerar.Name = "button_Gerar";
+            button_Gerar.Size = new Size(115, 23);
+            button_Gerar.TabIndex = 14;
+            button_Gerar.Text = "Gerar Protocolo";
+            button_Gerar.UseVisualStyleBackColor = false;
+            button_Gerar.Click += button_Gerar_Click;
+            // 
+            // button_Remover
+            // 
+            button_Remover.BackColor = SystemColors.ControlLight;
+            button_Remover.FlatAppearance.BorderSize = 0;
+            button_Remover.FlatStyle = FlatStyle.Flat;
+            button_Remover.Location = new Point(84, 174);
+            button_Remover.Name = "button_Remover";
+            button_Remover.Size = new Size(79, 23);
+            button_Remover.TabIndex = 13;
+            button_Remover.Text = "Remover";
+            button_Remover.UseVisualStyleBackColor = false;
+            button_Remover.Click += button_Remover_Click;
+            // 
+            // button_Adicionar
+            // 
+            button_Adicionar.BackColor = SystemColors.ControlLight;
+            button_Adicionar.FlatAppearance.BorderSize = 0;
+            button_Adicionar.FlatStyle = FlatStyle.Flat;
+            button_Adicionar.Location = new Point(0, 174);
+            button_Adicionar.Name = "button_Adicionar";
+            button_Adicionar.Size = new Size(77, 23);
+            button_Adicionar.TabIndex = 12;
+            button_Adicionar.Text = "Adicionar";
+            button_Adicionar.UseVisualStyleBackColor = false;
+            button_Adicionar.Click += button_Adicionar_Click;
+            // 
+            // dataGridView
+            // 
+            dataGridView.AllowUserToAddRows = false;
+            dataGridView.AllowUserToDeleteRows = false;
+            dataGridView.AllowUserToResizeRows = false;
+            dataGridView.BorderStyle = BorderStyle.None;
+            dataGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.ControlDarkDark;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
+            dataGridView.EnableHeadersVisualStyles = false;
+            dataGridView.Location = new Point(0, 203);
+            dataGridView.MultiSelect = false;
+            dataGridView.Name = "dataGridView";
+            dataGridView.ReadOnly = true;
+            dataGridView.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.ControlDarkDark;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridView.RowHeadersVisible = false;
+            dataGridViewCellStyle4.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.ControlDarkDark;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView.Size = new Size(760, 196);
+            dataGridView.TabIndex = 17;
+            dataGridView.CellClick += dataGridView_CellClick;
+            // 
+            // label_RetiradaCertidao
+            // 
+            label_RetiradaCertidao.Anchor = AnchorStyles.Left;
+            label_RetiradaCertidao.AutoSize = true;
+            label_RetiradaCertidao.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label_RetiradaCertidao.ForeColor = Color.Black;
+            label_RetiradaCertidao.Location = new Point(169, 133);
+            label_RetiradaCertidao.Name = "label_RetiradaCertidao";
+            label_RetiradaCertidao.Size = new Size(50, 15);
+            label_RetiradaCertidao.TabIndex = 16;
+            label_RetiradaCertidao.Text = "Retirada";
+            label_RetiradaCertidao.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // datePicker_Retirada
+            // 
+            datePicker_Retirada.CalendarForeColor = SystemColors.ControlLight;
+            datePicker_Retirada.CalendarMonthBackground = SystemColors.ControlLight;
+            datePicker_Retirada.CalendarTitleBackColor = Color.OliveDrab;
+            datePicker_Retirada.CalendarTrailingForeColor = Color.OliveDrab;
+            datePicker_Retirada.CustomFormat = "";
+            datePicker_Retirada.Format = DateTimePickerFormat.Short;
+            datePicker_Retirada.Location = new Point(169, 148);
+            datePicker_Retirada.Name = "datePicker_Retirada";
+            datePicker_Retirada.Size = new Size(115, 23);
+            datePicker_Retirada.TabIndex = 11;
+            // 
+            // textBox_TipoRegistro
+            // 
+            textBox_TipoRegistro.BackColor = SystemColors.ControlLight;
+            textBox_TipoRegistro.BorderStyle = BorderStyle.None;
+            textBox_TipoRegistro.CharacterCasing = CharacterCasing.Upper;
+            textBox_TipoRegistro.Font = new Font("Segoe UI", 9F);
+            textBox_TipoRegistro.ForeColor = Color.Black;
+            textBox_TipoRegistro.Location = new Point(0, 36);
+            textBox_TipoRegistro.Name = "textBox_TipoRegistro";
+            textBox_TipoRegistro.Size = new Size(284, 16);
+            textBox_TipoRegistro.TabIndex = 5;
+            // 
+            // label_Ato
+            // 
+            label_Ato.Anchor = AnchorStyles.Left;
+            label_Ato.AutoSize = true;
+            label_Ato.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label_Ato.ForeColor = Color.Black;
+            label_Ato.Location = new Point(0, 19);
+            label_Ato.Name = "label_Ato";
+            label_Ato.Size = new Size(26, 15);
+            label_Ato.TabIndex = 13;
+            label_Ato.Text = "Ato";
+            label_Ato.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBox_Descricao
+            // 
+            textBox_Descricao.BackColor = SystemColors.ControlLight;
+            textBox_Descricao.BorderStyle = BorderStyle.None;
+            textBox_Descricao.CharacterCasing = CharacterCasing.Upper;
+            textBox_Descricao.Font = new Font("Segoe UI", 9F);
+            textBox_Descricao.ForeColor = Color.Black;
+            textBox_Descricao.Location = new Point(0, 110);
+            textBox_Descricao.Name = "textBox_Descricao";
+            textBox_Descricao.Size = new Size(284, 16);
+            textBox_Descricao.TabIndex = 8;
+            // 
+            // label_RefRegistro
+            // 
+            label_RefRegistro.Anchor = AnchorStyles.Left;
+            label_RefRegistro.AutoSize = true;
+            label_RefRegistro.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label_RefRegistro.ForeColor = Color.Black;
+            label_RefRegistro.Location = new Point(0, 93);
+            label_RefRegistro.Name = "label_RefRegistro";
+            label_RefRegistro.Size = new Size(186, 15);
+            label_RefRegistro.TabIndex = 11;
+            label_RefRegistro.Text = "Descrição | Referência do Registro";
+            label_RefRegistro.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // numericUpDown_Certidao
+            // 
+            numericUpDown_Certidao.BackColor = SystemColors.ControlLight;
+            numericUpDown_Certidao.BorderStyle = BorderStyle.None;
+            numericUpDown_Certidao.Location = new Point(84, 150);
+            numericUpDown_Certidao.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericUpDown_Certidao.Name = "numericUpDown_Certidao";
+            numericUpDown_Certidao.Size = new Size(79, 19);
+            numericUpDown_Certidao.TabIndex = 10;
+            numericUpDown_Certidao.TextAlign = HorizontalAlignment.Center;
+            numericUpDown_Certidao.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // label_Quantidade
+            // 
+            label_Quantidade.Anchor = AnchorStyles.Left;
+            label_Quantidade.AutoSize = true;
+            label_Quantidade.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label_Quantidade.ForeColor = Color.Black;
+            label_Quantidade.Location = new Point(84, 133);
+            label_Quantidade.Name = "label_Quantidade";
+            label_Quantidade.Size = new Size(69, 15);
+            label_Quantidade.TabIndex = 9;
+            label_Quantidade.Text = "Quantidade";
+            label_Quantidade.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBox_Valor
+            // 
+            textBox_Valor.BackColor = SystemColors.ControlLight;
+            textBox_Valor.BorderStyle = BorderStyle.None;
+            textBox_Valor.CharacterCasing = CharacterCasing.Upper;
+            textBox_Valor.Font = new Font("Segoe UI", 9.5F);
+            textBox_Valor.ForeColor = Color.Black;
+            textBox_Valor.Location = new Point(0, 151);
+            textBox_Valor.Name = "textBox_Valor";
+            textBox_Valor.Size = new Size(77, 17);
+            textBox_Valor.TabIndex = 9;
+            textBox_Valor.KeyPress += textBox_Valor_KeyPress;
+            // 
+            // label_ValorCertidao
+            // 
+            label_ValorCertidao.Anchor = AnchorStyles.Left;
+            label_ValorCertidao.AutoSize = true;
+            label_ValorCertidao.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label_ValorCertidao.ForeColor = Color.Black;
+            label_ValorCertidao.Location = new Point(0, 133);
+            label_ValorCertidao.Name = "label_ValorCertidao";
+            label_ValorCertidao.Size = new Size(62, 15);
+            label_ValorCertidao.TabIndex = 6;
+            label_ValorCertidao.Text = "Valor Item";
+            label_ValorCertidao.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBox_PartesCertidao
+            // 
+            textBox_PartesCertidao.BackColor = SystemColors.ControlLight;
+            textBox_PartesCertidao.BorderStyle = BorderStyle.None;
+            textBox_PartesCertidao.CharacterCasing = CharacterCasing.Upper;
+            textBox_PartesCertidao.Font = new Font("Segoe UI", 9F);
+            textBox_PartesCertidao.ForeColor = Color.Black;
+            textBox_PartesCertidao.Location = new Point(0, 73);
+            textBox_PartesCertidao.Name = "textBox_PartesCertidao";
+            textBox_PartesCertidao.Size = new Size(284, 16);
+            textBox_PartesCertidao.TabIndex = 7;
+            // 
+            // label_RegistradoCertidao
+            // 
+            label_RegistradoCertidao.Anchor = AnchorStyles.Left;
+            label_RegistradoCertidao.AutoSize = true;
+            label_RegistradoCertidao.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label_RegistradoCertidao.ForeColor = Color.Black;
+            label_RegistradoCertidao.Location = new Point(0, 56);
+            label_RegistradoCertidao.Name = "label_RegistradoCertidao";
+            label_RegistradoCertidao.Size = new Size(227, 15);
+            label_RegistradoCertidao.TabIndex = 2;
+            label_RegistradoCertidao.Text = "Nome: Registrado | Contraentes | Falecido";
+            label_RegistradoCertidao.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label_Servico
+            // 
+            label_Servico.AutoSize = true;
+            label_Servico.Dock = DockStyle.Top;
+            label_Servico.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label_Servico.ForeColor = Color.Black;
+            label_Servico.Location = new Point(0, 0);
+            label_Servico.Name = "label_Servico";
+            label_Servico.Size = new Size(46, 15);
+            label_Servico.TabIndex = 1;
+            label_Servico.Text = "Serviço";
+            label_Servico.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // textBox_ReciboProv
+            // 
+            textBox_ReciboProv.BackColor = SystemColors.ControlLight;
+            textBox_ReciboProv.BorderStyle = BorderStyle.None;
+            textBox_ReciboProv.CharacterCasing = CharacterCasing.Upper;
+            textBox_ReciboProv.Font = new Font("Segoe UI", 9F);
+            textBox_ReciboProv.ForeColor = Color.Black;
+            textBox_ReciboProv.Location = new Point(635, 10);
+            textBox_ReciboProv.Name = "textBox_ReciboProv";
+            textBox_ReciboProv.Size = new Size(137, 16);
+            textBox_ReciboProv.TabIndex = 2;
+            textBox_ReciboProv.Visible = false;
+            textBox_ReciboProv.KeyPress += textBox_ReciboProv_KeyPress;
+            // 
+            // checkBox_ReciboProvisorio
+            // 
+            checkBox_ReciboProvisorio.AutoSize = true;
+            checkBox_ReciboProvisorio.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            checkBox_ReciboProvisorio.Location = new Point(502, 11);
+            checkBox_ReciboProvisorio.Name = "checkBox_ReciboProvisorio";
+            checkBox_ReciboProvisorio.Size = new Size(118, 19);
+            checkBox_ReciboProvisorio.TabIndex = 1;
+            checkBox_ReciboProvisorio.Text = "Recibo Provisório";
+            checkBox_ReciboProvisorio.UseVisualStyleBackColor = true;
+            checkBox_ReciboProvisorio.CheckedChanged += checkBox_ReciboProvisorio_CheckedChanged;
+            checkBox_ReciboProvisorio.KeyDown += checkBox_ReciboProvisorio_KeyDown;
+            // 
+            // label_NumeroReciboProv
+            // 
+            label_NumeroReciboProv.Anchor = AnchorStyles.Left;
+            label_NumeroReciboProv.AutoSize = true;
+            label_NumeroReciboProv.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label_NumeroReciboProv.ForeColor = Color.Black;
+            label_NumeroReciboProv.Location = new Point(616, 12);
+            label_NumeroReciboProv.Name = "label_NumeroReciboProv";
+            label_NumeroReciboProv.Size = new Size(19, 15);
+            label_NumeroReciboProv.TabIndex = 21;
+            label_NumeroReciboProv.Text = "nº";
+            label_NumeroReciboProv.TextAlign = ContentAlignment.MiddleLeft;
+            label_NumeroReciboProv.Visible = false;
+            // 
+            // label_Total
+            // 
+            label_Total.Anchor = AnchorStyles.Left;
+            label_Total.AutoSize = true;
+            label_Total.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label_Total.ForeColor = Color.Black;
+            label_Total.Location = new Point(299, 30);
+            label_Total.Name = "label_Total";
+            label_Total.Size = new Size(40, 17);
+            label_Total.TabIndex = 9;
+            label_Total.Text = "Total:";
+            label_Total.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label_Atendente
+            // 
+            label_Atendente.Anchor = AnchorStyles.Left;
+            label_Atendente.AutoSize = true;
+            label_Atendente.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label_Atendente.ForeColor = Color.Black;
+            label_Atendente.Location = new Point(421, 30);
+            label_Atendente.Name = "label_Atendente";
+            label_Atendente.Size = new Size(75, 17);
+            label_Atendente.TabIndex = 10;
+            label_Atendente.Text = "Atendente:";
+            label_Atendente.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // textBox_Atendente
+            // 
+            textBox_Atendente.BackColor = SystemColors.ControlLight;
+            textBox_Atendente.BorderStyle = BorderStyle.None;
+            textBox_Atendente.CharacterCasing = CharacterCasing.Upper;
+            textBox_Atendente.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox_Atendente.ForeColor = Color.Black;
+            textBox_Atendente.Location = new Point(502, 30);
+            textBox_Atendente.Name = "textBox_Atendente";
+            textBox_Atendente.Size = new Size(270, 18);
+            textBox_Atendente.TabIndex = 4;
+            // 
+            // Menu
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ControlDark;
+            ClientSize = new Size(784, 461);
+            Controls.Add(textBox_Atendente);
+            Controls.Add(textBox_ReciboProv);
+            Controls.Add(label_Atendente);
+            Controls.Add(label_NumeroReciboProv);
+            Controls.Add(checkBox_ReciboProvisorio);
+            Controls.Add(label_Total);
+            Controls.Add(panel1);
+            Controls.Add(textBox_CpfCnpj);
+            Controls.Add(label_CpfCnpj);
+            Controls.Add(textBox_Requerente);
+            Controls.Add(label_Requerente);
+            Font = new Font("Segoe UI", 9F);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            KeyPreview = true;
+            Name = "Menu";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Gerador de Protocolos";
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown_Certidao).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
+        }
+
+        #endregion
+
+        private Label label_Requerente;
+        private TextBox textBox_Requerente;
+        private Label label_CpfCnpj;
+        private TextBox textBox_CpfCnpj;
+        private Panel panel1;
+        private Label label_Servico;
+        private TextBox textBox_PartesCertidao;
+        private Label label_RegistradoCertidao;
+        private TextBox textBox_Valor;
+        private Label label_ValorCertidao;
+        private NumericUpDown numericUpDown_Certidao;
+        private Label label_Quantidade;
+        private TextBox textBox_TipoRegistro;
+        private Label label_Ato;
+        private TextBox textBox_Descricao;
+        private Label label_RefRegistro;
+        private DateTimePicker datePicker_Retirada;
+        private Label label_RetiradaCertidao;
+        private Button button_Adicionar;
+        private DataGridView dataGridView;
+        private CheckBox checkBox_ReciboProvisorio;
+        private CheckBox checkBox_ProtocoloLivro;
+        private TextBox textBox_ReciboProv;
+        private Label label_NumeroReciboProv;
+        private Button button_Gerar;
+        private Button button_Remover;
+        private Label label_Total;
+        private Label label_Atendente;
+        private TextBox textBox_Atendente;
+    }
+}
