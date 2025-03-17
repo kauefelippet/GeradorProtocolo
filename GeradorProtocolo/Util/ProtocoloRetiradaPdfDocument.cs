@@ -125,7 +125,7 @@ namespace GeradorProtocolo.Util
                     {
                         Contador++;
 
-                        column.Item().Row(row =>
+                        column.Item().PreventPageBreak().Row(row =>
                         {
                             row.RelativeItem().Column(column =>
                             {
