@@ -14,5 +14,10 @@ namespace GeradorProtocolo.Util
         {
             document.GeneratePdf(outputPath);
         }
+
+        public void GenerateProtocoloRetiradaPdfAndShow(ProtocoloRetiradaPdfDocument document)
+        {
+            document.GeneratePdfAndShow();
+        }
     }
 }

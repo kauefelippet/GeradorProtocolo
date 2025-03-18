@@ -57,7 +57,7 @@ namespace GeradorProtocolo.Util
                 {
                     row.RelativeItem().Column(column =>
                     {
-                        column.Item().Text($"Interessado: {Itens[0].Requerente}").FontSize(10).FontFamily("Century Gothic");
+                        column.Item().Text($"Interessado: {Itens[0].Requerente}  -  {Itens[0].CpfCnpj}").FontSize(10).FontFamily("Century Gothic");
                         if (IdProvisorio.HasValue) column.Item().Text($"Recibo Provisório nº {IdProvisorio}").FontSize(10).FontFamily("Century Gothic");
                         column.Item().Text($"Pagamento Prévio: {Total:C}").FontSize(10).FontFamily("Century Gothic");
                     });
@@ -65,8 +65,8 @@ namespace GeradorProtocolo.Util
                     row.RelativeItem().Column(column =>
                     {
                         column.Item().Text($"Atendente: {Atendente}").AlignRight().FontSize(10).FontFamily("Century Gothic");
-                        column.Item().Text($"Solicitação: {DateTime.Now:dd/mm/yyyy HH:mm}").AlignRight().FontSize(10).FontFamily("Century Gothic");
-                        column.Item().Text($"Retirada: {Retirada:dd/MM} a partir das 14:00").AlignRight().FontSize(10).Bold().FontFamily("Century Gothic");
+                        column.Item().Text($"Solicitação: {DateTime.Now:dd/MM/yyyy HH:mm}").AlignRight().FontSize(10).FontFamily("Century Gothic");
+                        column.Item().Text($"Retirada: {Retirada:dd/MM/yyyy} a partir das 14:00").AlignRight().FontSize(10).Bold().FontFamily("Century Gothic");
                     });
 
                     column.Item().PaddingVertical(5).Column(column =>
@@ -82,6 +82,7 @@ namespace GeradorProtocolo.Util
                 // Via Cartório
 
                 column.Item().Text("");
+                column.Item().Text("");
                 column.Item().Text("_________________________________________________________________________________________").AlignCenter().FontSize(12).Bold().FontFamily("Century Gothic");
                 column.Item().Text("");
                 column.Item().Text("COMPROVANTE DE DEPÓSITO PRÉVIO").AlignCenter().FontSize(12).Bold().FontFamily("Century Gothic");
@@ -89,7 +90,7 @@ namespace GeradorProtocolo.Util
                 {
                     row.RelativeItem().Column(column =>
                     {
-                        column.Item().Text($"Interessado: {Itens[0].Requerente}").FontSize(10).FontFamily("Century Gothic");
+                        column.Item().Text($"Interessado: {Itens[0].Requerente}  -  {Itens[0].CpfCnpj}").FontSize(10).FontFamily("Century Gothic");
                         if (IdProvisorio.HasValue) column.Item().Text($"Recibo Provisório nº {IdProvisorio}").FontSize(10).FontFamily("Century Gothic");
                         column.Item().Text($"Pagamento Prévio: {Total:C}").FontSize(10).FontFamily("Century Gothic");
                     });
@@ -97,8 +98,8 @@ namespace GeradorProtocolo.Util
                     row.RelativeItem().Column(column =>
                     {
                         column.Item().Text($"Atendente: {Atendente}").AlignRight().FontSize(10).FontFamily("Century Gothic");
-                        column.Item().Text($"Solicitação: {DateTime.Now:dd/mm/yyyy HH:mm}").AlignRight().FontSize(10).FontFamily("Century Gothic");
-                        column.Item().Text($"Retirada: {Retirada:dd/MM} a partir das 14:00").AlignRight().FontSize(10).Bold().FontFamily("Century Gothic");
+                        column.Item().Text($"Solicitação: {DateTime.Now:dd/MM/yyyy HH:mm}").AlignRight().FontSize(10).FontFamily("Century Gothic");
+                        column.Item().Text($"Retirada: {Retirada:dd/MM/yyyy} a partir das 14:00").AlignRight().FontSize(10).Bold().FontFamily("Century Gothic");
                     });
 
                     column.Item().PaddingVertical(5).Column(column =>
@@ -131,7 +132,7 @@ namespace GeradorProtocolo.Util
                             {
                                 column.Item().Text($"{Retirada:dd/MM/yyyy}        Parte(s): {item.NomeParte}").FontSize(12).Bold().FontFamily("Century Gothic");
                                 column.Item().Text($"{Contador} de {totalProtocoloLivro}                 {item.TipoRegistro}:  {item.Descricao}  -  Valor: R$ {item.Valor}  -  {Atendente}").FontSize(12).Bold().FontFamily("Century Gothic");
-                                column.Item().Text($"                              Recibo: {item.Requerente}  -  Solicitação: {DateTime.Now:dd/mm HH:mm}").FontSize(11).FontFamily("Century Gothic");
+                                column.Item().Text($"                              Recibo: {item.Requerente}  -  Solicitação: {DateTime.Now:dd/MM/yyyy HH:mm}").FontSize(11).FontFamily("Century Gothic");
                                 if (IdProvisorio.HasValue) column.Item().Text($"                              Recibo Provisório nº {IdProvisorio}").FontSize(11).FontFamily("Century Gothic");
                                 column.Item().Text("_________________________________________________________________________________________").AlignCenter().FontSize(12).Bold().FontFamily("Century Gothic");
                             });

@@ -64,6 +64,7 @@ namespace GeradorProtocolo
             Item item = new()
             {
                 Requerente = textBox_Requerente.Text,
+                CpfCnpj = textBox_CpfCnpj.Text,
                 Quantidade = (int)numericUpDown_Certidao.Value,
                 TipoRegistro = textBox_TipoRegistro.Text,
                 NomeParte = textBox_PartesCertidao.Text,
@@ -127,38 +128,28 @@ namespace GeradorProtocolo
 
         private void button_Gerar_Click(object sender, EventArgs e)
         {
-            // Create and configure SaveFileDialog
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            // Generate the PDF document
+            Atendente = textBox_Atendente.Text;
+            Retirada = DateOnly.FromDateTime(datePicker_Retirada.Value);
+            ProtocoloRetiradaPdfDocument document;
+
+            if (checkBox_ReciboProvisorio.Checked)
             {
-                saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
-                saveFileDialog.Title = "Save PDF File";
-                saveFileDialog.DefaultExt = "pdf";
-                saveFileDialog.AddExtension = true;
+                document = new(ProtocoloRetirada, Retirada, Atendente, Convert.ToInt32(textBox_ReciboProv.Text));
+            }
+            else
+            {
+                document = new(ProtocoloRetirada, Retirada, Atendente);
+            }
 
-                // Show the dialog and get the selected file path
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    string filePath = saveFileDialog.FileName;
-
-                    // Generate the PDF document
-                    Atendente = textBox_Atendente.Text;
-                    Retirada = DateOnly.FromDateTime(datePicker_Retirada.Value);
-                    ProtocoloRetiradaPdfDocument document;
-
-                    if (checkBox_ReciboProvisorio.Checked)
-                    {
-                        document = new(ProtocoloRetirada, Retirada, Atendente, Convert.ToInt32(textBox_ReciboProv.Text));
-                    }
-                    else
-                    {
-                        document = new(ProtocoloRetirada, Retirada, Atendente);
-                    }
-
-                    pdfService.GenerateProtocoloRetiradaPdf(document, filePath);
-
-                    // Open the generated PDF file
-                    Process.Start(new ProcessStartInfo(filePath) { UseShellExecute = true });
-                }
+            try
+            {
+                // Generate and show the PDF document
+                pdfService.GenerateProtocoloRetiradaPdfAndShow(document);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro ao gerar o arquivo. Verifique se os campos necessários estão preenchidos e tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
