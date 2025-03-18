@@ -11,14 +11,16 @@ namespace GeradorProtocolo.Util
     {
         private readonly BindingList<Item> Itens;
         private readonly DateOnly Retirada;
+        private readonly DateTime HorarioRetirada;
         private readonly string Atendente;
         private readonly int? IdProvisorio;
         private double Total;
 
-        public ProtocoloRetiradaPdfDocument(BindingList<Item> itens, DateOnly retirada, string atendente)
+        public ProtocoloRetiradaPdfDocument(BindingList<Item> itens, DateOnly retirada, DateTime horarioRetirada, string atendente)
         {
             this.Itens = itens;
             this.Retirada = retirada;
+            this.HorarioRetirada = horarioRetirada;
             this.Atendente = atendente;
             foreach (var item in this.Itens)
             {
@@ -26,10 +28,11 @@ namespace GeradorProtocolo.Util
             }
         }
 
-        public ProtocoloRetiradaPdfDocument(BindingList<Item> itens, DateOnly retirada, string atendente, int idReciboProvisorio)
+        public ProtocoloRetiradaPdfDocument(BindingList<Item> itens, DateOnly retirada, DateTime horarioRetirada, string atendente, int idReciboProvisorio)
         {
             this.Itens = itens;
             this.Retirada = retirada;
+            this.HorarioRetirada = horarioRetirada;
             this.Atendente = atendente;
             this.IdProvisorio = idReciboProvisorio;
             foreach (var item in this.Itens)
@@ -66,7 +69,7 @@ namespace GeradorProtocolo.Util
                     {
                         column.Item().Text($"Atendente: {Atendente}").AlignRight().FontSize(10).FontFamily("Century Gothic");
                         column.Item().Text($"Solicitação: {DateTime.Now:dd/MM/yyyy HH:mm}").AlignRight().FontSize(10).FontFamily("Century Gothic");
-                        column.Item().Text($"Retirada: {Retirada:dd/MM/yyyy} a partir das 14:00").AlignRight().FontSize(10).Bold().FontFamily("Century Gothic");
+                        column.Item().Text($"Retirada: {Retirada:dd/MM/yyyy} a partir das {HorarioRetirada:HH:mm}").AlignRight().FontSize(10).Bold().FontFamily("Century Gothic");
                     });
 
                     column.Item().PaddingVertical(5).Column(column =>
@@ -99,7 +102,7 @@ namespace GeradorProtocolo.Util
                     {
                         column.Item().Text($"Atendente: {Atendente}").AlignRight().FontSize(10).FontFamily("Century Gothic");
                         column.Item().Text($"Solicitação: {DateTime.Now:dd/MM/yyyy HH:mm}").AlignRight().FontSize(10).FontFamily("Century Gothic");
-                        column.Item().Text($"Retirada: {Retirada:dd/MM/yyyy} a partir das 14:00").AlignRight().FontSize(10).Bold().FontFamily("Century Gothic");
+                        column.Item().Text($"Retirada: {Retirada:dd/MM/yyyy} a partir das {HorarioRetirada:HH:mm}").AlignRight().FontSize(10).Bold().FontFamily("Century Gothic");
                     });
 
                     column.Item().PaddingVertical(5).Column(column =>

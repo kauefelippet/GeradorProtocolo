@@ -1,8 +1,6 @@
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Diagnostics;
 using GeradorProtocolo.Models;
 using GeradorProtocolo.Util;
+using System.ComponentModel;
 
 namespace GeradorProtocolo
 {
@@ -25,6 +23,7 @@ namespace GeradorProtocolo
             ProtocoloRetirada = new();
             ProtocoloLivro = new();
             BindData(); // Ensure this is called to set up the data binding
+            timePicker.Value = DateTime.Today.AddHours(14);
         }
 
         public void BindData()
@@ -36,11 +35,14 @@ namespace GeradorProtocolo
             // Configure dataGridView columns: autoGenerateColumns = false; Clear columns; Add columns.
             dataGridView.AutoGenerateColumns = false;
             dataGridView.Columns.Clear();
-            dataGridView.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Quantidade", HeaderText = "Quantidade" });
+            dataGridView.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Quantidade", HeaderText = "Qtd." });
             dataGridView.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "TipoRegistro", HeaderText = "Ato" });
             dataGridView.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Descricao", HeaderText = "Descrição" });
             dataGridView.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Total", HeaderText = "Valor" });
             dataGridView.Columns.Add(new DataGridViewCheckBoxColumn { DataPropertyName = "ProtocoloLivro", HeaderText = "Protocolo para Livro" });
+
+            // Set AutoSizeColumnsMode to AllCells to adjust the columns' width based on the content
+            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
         private void checkBox_ReciboProvisorio_CheckedChanged(object sender, EventArgs e)
@@ -61,23 +63,29 @@ namespace GeradorProtocolo
         private void button_Adicionar_Click(object sender, EventArgs e)
         {
             // Add item to ProtocoloRetirada. If checkBox_Apostila is checked, add item to ProtocoloApostila. If checkBox_ReciboProvisorio is checked, add item to ReciboProvisorio.
-            Item item = new()
+            try
             {
-                Requerente = textBox_Requerente.Text,
-                CpfCnpj = textBox_CpfCnpj.Text,
-                Quantidade = (int)numericUpDown_Certidao.Value,
-                TipoRegistro = textBox_TipoRegistro.Text,
-                NomeParte = textBox_PartesCertidao.Text,
-                Descricao = textBox_Descricao.Text,
-                Valor = Convert.ToDouble(textBox_Valor.Text),
-                ProtocoloLivro = checkBox_ProtocoloLivro.Checked
-            };
-            if (checkBox_ProtocoloLivro.Checked)
-            {
-                ProtocoloLivro.Add(item);
+                Item item = new()
+                {
+                    Requerente = textBox_Requerente.Text,
+                    CpfCnpj = textBox_CpfCnpj.Text,
+                    Quantidade = (int)numericUpDown_Certidao.Value,
+                    TipoRegistro = textBox_TipoRegistro.Text,
+                    NomeParte = textBox_PartesCertidao.Text,
+                    Descricao = textBox_Descricao.Text,
+                    Valor = Convert.ToDouble(textBox_Valor.Text),
+                    ProtocoloLivro = checkBox_ProtocoloLivro.Checked
+                };
+                if (checkBox_ProtocoloLivro.Checked)
+                {
+                    ProtocoloLivro.Add(item);
+                }
+                ProtocoloRetirada.Add(item);
             }
-            ProtocoloRetirada.Add(item);
-
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro ao adicionar o item. Verifique se os campos necessários estão preenchidos e tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             ClearFields();
 
             // Calculate total value of ProtocoloRetirada.
@@ -135,11 +143,11 @@ namespace GeradorProtocolo
 
             if (checkBox_ReciboProvisorio.Checked)
             {
-                document = new(ProtocoloRetirada, Retirada, Atendente, Convert.ToInt32(textBox_ReciboProv.Text));
+                document = new(ProtocoloRetirada, Retirada, timePicker.Value, Atendente, Convert.ToInt32(textBox_ReciboProv.Text));
             }
             else
             {
-                document = new(ProtocoloRetirada, Retirada, Atendente);
+                document = new(ProtocoloRetirada, Retirada, timePicker.Value, Atendente);
             }
 
             try
@@ -163,10 +171,17 @@ namespace GeradorProtocolo
             // Remove item from ProtocoloRetirada. If checkBox_ProtocoloLivro is checked, remove item from ProtocoloLivro.
             if (ClickedRowIndex >= 0)
             {
-                ProtocoloRetirada.RemoveAt(ClickedRowIndex);
-                if (checkBox_ProtocoloLivro.Checked)
+                try
                 {
-                    ProtocoloLivro.RemoveAt(ClickedRowIndex);
+                    if (ProtocoloRetirada[ClickedRowIndex].ProtocoloLivro)
+                    {
+                        ProtocoloLivro.RemoveAt(ClickedRowIndex);
+                    }
+                    ProtocoloRetirada.RemoveAt(ClickedRowIndex);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Ocorreu um erro ao remover o item. Tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }

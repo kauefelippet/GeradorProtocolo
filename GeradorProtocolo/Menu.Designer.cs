@@ -38,6 +38,8 @@
             label_CpfCnpj = new Label();
             textBox_CpfCnpj = new TextBox();
             panel1 = new Panel();
+            label_HorarioRetirada = new Label();
+            timePicker = new DateTimePicker();
             checkBox_ProtocoloLivro = new CheckBox();
             button_Gerar = new Button();
             button_Remover = new Button();
@@ -120,6 +122,8 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(label_HorarioRetirada);
+            panel1.Controls.Add(timePicker);
             panel1.Controls.Add(checkBox_ProtocoloLivro);
             panel1.Controls.Add(button_Gerar);
             panel1.Controls.Add(button_Remover);
@@ -143,6 +147,35 @@
             panel1.Size = new Size(760, 399);
             panel1.TabIndex = 4;
             // 
+            // label_HorarioRetirada
+            // 
+            label_HorarioRetirada.Anchor = AnchorStyles.Left;
+            label_HorarioRetirada.AutoSize = true;
+            label_HorarioRetirada.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label_HorarioRetirada.ForeColor = Color.Black;
+            label_HorarioRetirada.Location = new Point(290, 133);
+            label_HorarioRetirada.Name = "label_HorarioRetirada";
+            label_HorarioRetirada.Size = new Size(47, 15);
+            label_HorarioRetirada.TabIndex = 19;
+            label_HorarioRetirada.Text = "Horário";
+            label_HorarioRetirada.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // timePicker
+            // 
+            timePicker.CalendarForeColor = SystemColors.ControlLight;
+            timePicker.CalendarMonthBackground = SystemColors.ControlLight;
+            timePicker.CalendarTitleBackColor = Color.OliveDrab;
+            timePicker.CalendarTrailingForeColor = Color.OliveDrab;
+            timePicker.CustomFormat = "HH:mm";
+            timePicker.Format = DateTimePickerFormat.Custom;
+            timePicker.Location = new Point(290, 148);
+            timePicker.Name = "timePicker";
+            timePicker.RightToLeft = RightToLeft.No;
+            timePicker.ShowUpDown = true;
+            timePicker.Size = new Size(55, 23);
+            timePicker.TabIndex = 12;
+            timePicker.Value = new DateTime(2025, 3, 18, 14, 0, 0, 0);
+            // 
             // checkBox_ProtocoloLivro
             // 
             checkBox_ProtocoloLivro.AutoSize = true;
@@ -163,7 +196,7 @@
             button_Gerar.Location = new Point(169, 174);
             button_Gerar.Name = "button_Gerar";
             button_Gerar.Size = new Size(115, 23);
-            button_Gerar.TabIndex = 14;
+            button_Gerar.TabIndex = 15;
             button_Gerar.Text = "Gerar Protocolo";
             button_Gerar.UseVisualStyleBackColor = false;
             button_Gerar.Click += button_Gerar_Click;
@@ -176,7 +209,7 @@
             button_Remover.Location = new Point(84, 174);
             button_Remover.Name = "button_Remover";
             button_Remover.Size = new Size(79, 23);
-            button_Remover.TabIndex = 13;
+            button_Remover.TabIndex = 14;
             button_Remover.Text = "Remover";
             button_Remover.UseVisualStyleBackColor = false;
             button_Remover.Click += button_Remover_Click;
@@ -189,7 +222,7 @@
             button_Adicionar.Location = new Point(0, 174);
             button_Adicionar.Name = "button_Adicionar";
             button_Adicionar.Size = new Size(77, 23);
-            button_Adicionar.TabIndex = 12;
+            button_Adicionar.TabIndex = 13;
             button_Adicionar.Text = "Adicionar";
             button_Adicionar.UseVisualStyleBackColor = false;
             button_Adicionar.Click += button_Adicionar_Click;
@@ -552,5 +585,7 @@
         private Label label_Total;
         private Label label_Atendente;
         private TextBox textBox_Atendente;
+        private Label label_HorarioRetirada;
+        private DateTimePicker timePicker;
     }
 }
