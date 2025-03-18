@@ -3,7 +3,7 @@
 ![C# Badge](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=csharp&logoColor=white)
 ![.Net Badge](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
 
-![image](https://github.com/user-attachments/assets/2ac9922c-10f1-4a7a-bc3e-50b8fc8386de)
+![image](https://github.com/user-attachments/assets/e3a930f5-12ac-4ba2-a41e-73113f616bbc)
 
 ## Overview
 
@@ -78,7 +78,7 @@ This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.t
 ![Badge C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=csharp&logoColor=white)
 ![Badge .Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
 
-![image](https://github.com/user-attachments/assets/8c782e64-0b79-4d2e-8d29-51c7bac499be)
+![image](https://github.com/user-attachments/assets/e3a930f5-12ac-4ba2-a41e-73113f616bbc)
 
 ## Visão Geral
 

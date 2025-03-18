@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 225 KAUÊ FELIPPE TIBURCIO
+Copyright (c) 2025 KAUÊ FELIPPE TIBURCIO
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,7 @@ SOFTWARE.
 
 MIT License
 
-Copyright (c) 225 KAUÊ FELIPPE TIBURCIO
+Copyright (c) 2025 KAUÊ FELIPPE TIBURCIO
 
 A permissão é concedida, gratuitamente, a qualquer pessoa que obtenha uma cópia
 deste software e dos arquivos de documentação associados (o "Software"), para lidar

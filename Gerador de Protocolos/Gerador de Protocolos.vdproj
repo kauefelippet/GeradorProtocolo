@@ -4,9 +4,9 @@
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
 "ProjectName" = "8:Gerador de Protocolos"
-"LanguageId" = "3:1033"
+"LanguageId" = "3:1046"
 "CodePage" = "3:1252"
-"UILanguageId" = "3:1033"
+"UILanguageId" = "3:1046"
 "SccProjectName" = "8:"
 "SccLocalPath" = "8:"
 "SccAuxPath" = "8:"
@@ -43,6 +43,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -59,6 +75,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -76,6 +108,16 @@
         {
             "LaunchCondition"
             {
+                "{A06ECF26-33A3-4562-8140-9B0E340D4F24}:_B807D9FAE1D449CC812EE08A3CBF9D61"
+                {
+                "Name" = "8:.NET Core"
+                "Message" = "8:[VSDNETCOREMSG]"
+                "AllowLaterVersions" = "11:FALSE"
+                "InstallUrl" = "8:https://dotnet.microsoft.com/download/dotnet-core/[NetCoreVerMajorDotMinor]"
+                "IsNETCore" = "11:TRUE"
+                "Architecture" = "2:0"
+                "Runtime" = "2:0"
+                }
             }
         }
         "File"
@@ -149,32 +191,32 @@
         }
         "MsiBootstrapper"
         {
-        "LangId" = "3:1033"
+        "LangId" = "3:1046"
         "RequiresElevation" = "11:FALSE"
         }
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Gerador de Protocolos"
-        "ProductCode" = "8:{F72278E8-2C85-41D2-9BEF-D732420AF15B}"
-        "PackageCode" = "8:{55AD2B76-6A88-4B50-B3C6-A5EF4703DF5A}"
+        "ProductCode" = "8:{CEC8862C-6F4D-4AA9-9421-2230913038FF}"
+        "PackageCode" = "8:{9B77CCE6-89BB-4544-AB88-E017112DB6F1}"
         "UpgradeCode" = "8:{1F4BBBA2-986F-4116-A900-4C51E603D629}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.0.3"
         "Manufacturer" = "8:Kauê Felippe Tiburcio"
         "ARPHELPTELEPHONE" = "8:"
-        "ARPHELPLINK" = "8:"
+        "ARPHELPLINK" = "8:https://github.com/kauefelippet/GeradorProtocolo"
         "Title" = "8:Gerador de Protocolos"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Kauê Felippe Tiburcio"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
-        "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:"
+        "ARPURLINFOABOUT" = "8:https://github.com/kauefelippet/"
+        "ARPPRODUCTICON" = "8:_943A8EF102874E50B0A1905D48753E94"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -301,6 +343,20 @@
             "Transitive" = "11:FALSE"
             "Target" = "8:_6E7634FFB1BA4EC5B1FDF20BE536D87D"
             "Folder" = "8:_A9687CBEB3F446F6BCA62F3DB654A39F"
+            "WorkingFolder" = "8:_B219A5C50AA34D42ADA354BAF63170A3"
+            "Icon" = "8:_943A8EF102874E50B0A1905D48753E94"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_9ABCA581113541C9BE315C3D53AD943E"
+            {
+            "Name" = "8:Gerador de Protocolos"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_6E7634FFB1BA4EC5B1FDF20BE536D87D"
+            "Folder" = "8:_B219A5C50AA34D42ADA354BAF63170A3"
             "WorkingFolder" = "8:_B219A5C50AA34D42ADA354BAF63170A3"
             "Icon" = "8:_943A8EF102874E50B0A1905D48753E94"
             "Feature" = "8:"
