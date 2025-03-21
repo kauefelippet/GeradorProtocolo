@@ -38,6 +38,9 @@
             label_CpfCnpj = new Label();
             textBox_CpfCnpj = new TextBox();
             panel1 = new Panel();
+            label_CpfPartes = new Label();
+            textBox_CpfPartes = new TextBox();
+            checkBox_Cpf = new CheckBox();
             label_HorarioRetirada = new Label();
             timePicker = new DateTimePicker();
             checkBox_ProtocoloLivro = new CheckBox();
@@ -122,6 +125,9 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(label_CpfPartes);
+            panel1.Controls.Add(textBox_CpfPartes);
+            panel1.Controls.Add(checkBox_Cpf);
             panel1.Controls.Add(label_HorarioRetirada);
             panel1.Controls.Add(timePicker);
             panel1.Controls.Add(checkBox_ProtocoloLivro);
@@ -146,6 +152,46 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(760, 399);
             panel1.TabIndex = 4;
+            // 
+            // label_CpfPartes
+            // 
+            label_CpfPartes.Anchor = AnchorStyles.Left;
+            label_CpfPartes.AutoSize = true;
+            label_CpfPartes.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label_CpfPartes.ForeColor = Color.Black;
+            label_CpfPartes.Location = new Point(290, 56);
+            label_CpfPartes.Name = "label_CpfPartes";
+            label_CpfPartes.Size = new Size(97, 15);
+            label_CpfPartes.TabIndex = 22;
+            label_CpfPartes.Text = "CPFs Respectivos";
+            label_CpfPartes.TextAlign = ContentAlignment.MiddleLeft;
+            label_CpfPartes.Visible = false;
+            // 
+            // textBox_CpfPartes
+            // 
+            textBox_CpfPartes.BackColor = SystemColors.ControlLight;
+            textBox_CpfPartes.BorderStyle = BorderStyle.None;
+            textBox_CpfPartes.Font = new Font("Segoe UI", 9F);
+            textBox_CpfPartes.ForeColor = Color.Black;
+            textBox_CpfPartes.Location = new Point(290, 73);
+            textBox_CpfPartes.Name = "textBox_CpfPartes";
+            textBox_CpfPartes.Size = new Size(318, 16);
+            textBox_CpfPartes.TabIndex = 9;
+            textBox_CpfPartes.Visible = false;
+            // 
+            // checkBox_Cpf
+            // 
+            checkBox_Cpf.AutoSize = true;
+            checkBox_Cpf.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            checkBox_Cpf.Location = new Point(429, 35);
+            checkBox_Cpf.Name = "checkBox_Cpf";
+            checkBox_Cpf.Size = new Size(118, 19);
+            checkBox_Cpf.TabIndex = 7;
+            checkBox_Cpf.Text = "CPF no Protocolo";
+            checkBox_Cpf.UseVisualStyleBackColor = true;
+            checkBox_Cpf.Visible = false;
+            checkBox_Cpf.CheckedChanged += checkBox_Cpf_CheckedChanged;
+            checkBox_Cpf.KeyDown += checkBox_Cpf_KeyDown;
             // 
             // label_HorarioRetirada
             // 
@@ -173,7 +219,7 @@
             timePicker.RightToLeft = RightToLeft.No;
             timePicker.ShowUpDown = true;
             timePicker.Size = new Size(55, 23);
-            timePicker.TabIndex = 12;
+            timePicker.TabIndex = 14;
             timePicker.Value = new DateTime(2025, 3, 18, 14, 0, 0, 0);
             // 
             // checkBox_ProtocoloLivro
@@ -186,6 +232,7 @@
             checkBox_ProtocoloLivro.TabIndex = 6;
             checkBox_ProtocoloLivro.Text = "Protocolo para Livro";
             checkBox_ProtocoloLivro.UseVisualStyleBackColor = true;
+            checkBox_ProtocoloLivro.CheckedChanged += checkBox_ProtocoloLivro_CheckedChanged;
             checkBox_ProtocoloLivro.KeyDown += checkBox_ProtocoloLivro_KeyDown;
             // 
             // button_Gerar
@@ -196,7 +243,7 @@
             button_Gerar.Location = new Point(169, 174);
             button_Gerar.Name = "button_Gerar";
             button_Gerar.Size = new Size(115, 23);
-            button_Gerar.TabIndex = 15;
+            button_Gerar.TabIndex = 17;
             button_Gerar.Text = "Gerar Protocolo";
             button_Gerar.UseVisualStyleBackColor = false;
             button_Gerar.Click += button_Gerar_Click;
@@ -209,7 +256,7 @@
             button_Remover.Location = new Point(84, 174);
             button_Remover.Name = "button_Remover";
             button_Remover.Size = new Size(79, 23);
-            button_Remover.TabIndex = 14;
+            button_Remover.TabIndex = 16;
             button_Remover.Text = "Remover";
             button_Remover.UseVisualStyleBackColor = false;
             button_Remover.Click += button_Remover_Click;
@@ -222,7 +269,7 @@
             button_Adicionar.Location = new Point(0, 174);
             button_Adicionar.Name = "button_Adicionar";
             button_Adicionar.Size = new Size(77, 23);
-            button_Adicionar.TabIndex = 13;
+            button_Adicionar.TabIndex = 15;
             button_Adicionar.Text = "Adicionar";
             button_Adicionar.UseVisualStyleBackColor = false;
             button_Adicionar.Click += button_Adicionar_Click;
@@ -302,7 +349,7 @@
             datePicker_Retirada.Location = new Point(169, 148);
             datePicker_Retirada.Name = "datePicker_Retirada";
             datePicker_Retirada.Size = new Size(115, 23);
-            datePicker_Retirada.TabIndex = 11;
+            datePicker_Retirada.TabIndex = 13;
             // 
             // textBox_TipoRegistro
             // 
@@ -339,7 +386,7 @@
             textBox_Descricao.Location = new Point(0, 110);
             textBox_Descricao.Name = "textBox_Descricao";
             textBox_Descricao.Size = new Size(284, 16);
-            textBox_Descricao.TabIndex = 8;
+            textBox_Descricao.TabIndex = 10;
             // 
             // label_RefRegistro
             // 
@@ -362,7 +409,7 @@
             numericUpDown_Certidao.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericUpDown_Certidao.Name = "numericUpDown_Certidao";
             numericUpDown_Certidao.Size = new Size(79, 19);
-            numericUpDown_Certidao.TabIndex = 10;
+            numericUpDown_Certidao.TabIndex = 12;
             numericUpDown_Certidao.TextAlign = HorizontalAlignment.Center;
             numericUpDown_Certidao.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
@@ -389,7 +436,7 @@
             textBox_Valor.Location = new Point(0, 151);
             textBox_Valor.Name = "textBox_Valor";
             textBox_Valor.Size = new Size(77, 17);
-            textBox_Valor.TabIndex = 9;
+            textBox_Valor.TabIndex = 11;
             textBox_Valor.KeyPress += textBox_Valor_KeyPress;
             // 
             // label_ValorCertidao
@@ -415,7 +462,7 @@
             textBox_PartesCertidao.Location = new Point(0, 73);
             textBox_PartesCertidao.Name = "textBox_PartesCertidao";
             textBox_PartesCertidao.Size = new Size(284, 16);
-            textBox_PartesCertidao.TabIndex = 7;
+            textBox_PartesCertidao.TabIndex = 8;
             // 
             // label_RegistradoCertidao
             // 
@@ -587,5 +634,8 @@
         private TextBox textBox_Atendente;
         private Label label_HorarioRetirada;
         private DateTimePicker timePicker;
+        private Label label_CpfPartes;
+        private TextBox textBox_CpfPartes;
+        private CheckBox checkBox_Cpf;
     }
 }

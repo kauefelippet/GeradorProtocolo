@@ -9,36 +9,11 @@ namespace GeradorProtocolo.Util
 {
     public class ProtocoloRetiradaPdfDocument : IDocument
     {
-        private readonly BindingList<Item> Itens;
-        private readonly DateOnly Retirada;
-        private readonly DateTime HorarioRetirada;
-        private readonly string Atendente;
-        private readonly int? IdProvisorio;
-        private double Total;
+        private readonly Protocolo protocolo;
 
-        public ProtocoloRetiradaPdfDocument(BindingList<Item> itens, DateOnly retirada, DateTime horarioRetirada, string atendente)
+        public ProtocoloRetiradaPdfDocument(Protocolo protocolo)
         {
-            this.Itens = itens;
-            this.Retirada = retirada;
-            this.HorarioRetirada = horarioRetirada;
-            this.Atendente = atendente;
-            foreach (var item in this.Itens)
-            {
-                Total += item.Total;
-            }
-        }
-
-        public ProtocoloRetiradaPdfDocument(BindingList<Item> itens, DateOnly retirada, DateTime horarioRetirada, string atendente, int idReciboProvisorio)
-        {
-            this.Itens = itens;
-            this.Retirada = retirada;
-            this.HorarioRetirada = horarioRetirada;
-            this.Atendente = atendente;
-            this.IdProvisorio = idReciboProvisorio;
-            foreach (var item in this.Itens)
-            {
-                Total += item.Total;
-            }
+            this.protocolo = protocolo;
         }
 
         public void Compose(IDocumentContainer container)
@@ -60,16 +35,16 @@ namespace GeradorProtocolo.Util
                 {
                     row.RelativeItem().Column(column =>
                     {
-                        column.Item().Text($"Interessado: {Itens[0].Requerente}  -  {Itens[0].CpfCnpj}").FontSize(10).FontFamily("Century Gothic");
-                        if (IdProvisorio.HasValue) column.Item().Text($"Recibo Provisório nº {IdProvisorio}").FontSize(10).FontFamily("Century Gothic");
-                        column.Item().Text($"Pagamento Prévio: {Total:C}").FontSize(10).FontFamily("Century Gothic");
+                        column.Item().Text($"Interessado: {protocolo.Requerente}  -  {protocolo.CpfCnpj}").FontSize(10).FontFamily("Century Gothic");
+                        if (protocolo.IdProvisorio.HasValue) column.Item().Text($"Recibo Provisório nº {protocolo.IdProvisorio}").FontSize(10).FontFamily("Century Gothic");
+                        column.Item().Text($"Pagamento Prévio: {protocolo.Total:C}").FontSize(10).FontFamily("Century Gothic");
                     });
 
                     row.RelativeItem().Column(column =>
                     {
-                        column.Item().Text($"Atendente: {Atendente}").AlignRight().FontSize(10).FontFamily("Century Gothic");
+                        column.Item().Text($"Atendente: {protocolo.Atendente}").AlignRight().FontSize(10).FontFamily("Century Gothic");
                         column.Item().Text($"Solicitação: {DateTime.Now:dd/MM/yyyy HH:mm}").AlignRight().FontSize(10).FontFamily("Century Gothic");
-                        column.Item().Text($"Retirada: {Retirada:dd/MM/yyyy} a partir das {HorarioRetirada:HH:mm}").AlignRight().FontSize(10).Bold().FontFamily("Century Gothic");
+                        column.Item().Text($"Retirada: {protocolo.Retirada:dd/MM/yyyy} a partir das {protocolo.HorarioRetirada:HH:mm}").AlignRight().FontSize(10).Bold().FontFamily("Century Gothic");
                     });
 
                     column.Item().PaddingVertical(5).Column(column =>
@@ -93,16 +68,16 @@ namespace GeradorProtocolo.Util
                 {
                     row.RelativeItem().Column(column =>
                     {
-                        column.Item().Text($"Interessado: {Itens[0].Requerente}  -  {Itens[0].CpfCnpj}").FontSize(10).FontFamily("Century Gothic");
-                        if (IdProvisorio.HasValue) column.Item().Text($"Recibo Provisório nº {IdProvisorio}").FontSize(10).FontFamily("Century Gothic");
-                        column.Item().Text($"Pagamento Prévio: {Total:C}").FontSize(10).FontFamily("Century Gothic");
+                        column.Item().Text($"Interessado: {protocolo.Requerente}  -  {protocolo.CpfCnpj}").FontSize(10).FontFamily("Century Gothic");
+                        if (protocolo.IdProvisorio.HasValue) column.Item().Text($"Recibo Provisório nº {protocolo.IdProvisorio}").FontSize(10).FontFamily("Century Gothic");
+                        column.Item().Text($"Pagamento Prévio: {protocolo.Total:C}").FontSize(10).FontFamily("Century Gothic");
                     });
 
                     row.RelativeItem().Column(column =>
                     {
-                        column.Item().Text($"Atendente: {Atendente}").AlignRight().FontSize(10).FontFamily("Century Gothic");
+                        column.Item().Text($"Atendente: {protocolo.Atendente}").AlignRight().FontSize(10).FontFamily("Century Gothic");
                         column.Item().Text($"Solicitação: {DateTime.Now:dd/MM/yyyy HH:mm}").AlignRight().FontSize(10).FontFamily("Century Gothic");
-                        column.Item().Text($"Retirada: {Retirada:dd/MM/yyyy} a partir das {HorarioRetirada:HH:mm}").AlignRight().FontSize(10).Bold().FontFamily("Century Gothic");
+                        column.Item().Text($"Retirada: {protocolo.Retirada:dd/MM/yyyy} a partir das {protocolo.HorarioRetirada:HH:mm}").AlignRight().FontSize(10).Bold().FontFamily("Century Gothic");
                     });
 
                     column.Item().PaddingVertical(5).Column(column =>
@@ -122,8 +97,8 @@ namespace GeradorProtocolo.Util
                 column.Item().Text("");
 
                 int Contador = 0;
-                int totalProtocoloLivro = Itens.Count(item => item.ProtocoloLivro);
-                foreach (var item in Itens)
+                int totalProtocoloLivro = protocolo.ProtocoloRetirada.Count(item => item.ProtocoloLivro);
+                foreach (var item in protocolo.ProtocoloRetirada)
                 {
                     if (item.ProtocoloLivro)
                     {
@@ -133,10 +108,11 @@ namespace GeradorProtocolo.Util
                         {
                             row.RelativeItem().Column(column =>
                             {
-                                column.Item().Text($"{Retirada:dd/MM/yyyy}        Parte(s): {item.NomeParte}").FontSize(12).Bold().FontFamily("Century Gothic");
-                                column.Item().Text($"{Contador} de {totalProtocoloLivro}                 {item.TipoRegistro}:  {item.Descricao}  -  Valor: R$ {item.Valor}  -  {Atendente}").FontSize(12).Bold().FontFamily("Century Gothic");
-                                column.Item().Text($"                              Recibo: {item.Requerente}  -  Solicitação: {DateTime.Now:dd/MM/yyyy HH:mm}").FontSize(11).FontFamily("Century Gothic");
-                                if (IdProvisorio.HasValue) column.Item().Text($"                              Recibo Provisório nº {IdProvisorio}").FontSize(11).FontFamily("Century Gothic");
+                                column.Item().Text($"{protocolo.Retirada:dd/MM/yyyy}        Parte(s): {item.NomeParte}").FontSize(12).Bold().FontFamily("Century Gothic");
+                                column.Item().Text($"{Contador} de {totalProtocoloLivro}                 {item.TipoRegistro}:  {item.Descricao}  -  Valor: R$ {item.Valor}  -  {protocolo.Atendente}").FontSize(12).Bold().FontFamily("Century Gothic");
+                                column.Item().Text($"                              Recibo: {protocolo.Requerente}  -  Solicitação: {DateTime.Now:dd/MM/yyyy HH:mm}").FontSize(11).FontFamily("Century Gothic");
+                                if (protocolo.IdProvisorio.HasValue) column.Item().Text($"                              Recibo Provisório nº {protocolo.IdProvisorio}").FontSize(11).FontFamily("Century Gothic");
+                                if (!string.IsNullOrEmpty(item.CpfParte)) column.Item().Text($"                              CPF(s): {item.CpfParte}").FontSize(11).FontFamily("Century Gothic");
                                 column.Item().Text("_________________________________________________________________________________________").AlignCenter().FontSize(12).Bold().FontFamily("Century Gothic");
                             });
                         });
@@ -170,7 +146,7 @@ namespace GeradorProtocolo.Util
                     }
                 });
 
-                foreach (var item in Itens)
+                foreach (var item in protocolo.ProtocoloRetirada)
                 {
                     table.Cell().Element(CellStyling).Text($"{item.Quantidade}");
                     table.Cell().Element(CellStyling).Text($"{item.TipoRegistro}");

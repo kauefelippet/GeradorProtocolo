@@ -1,27 +1,19 @@
 using GeradorProtocolo.Models;
 using GeradorProtocolo.Util;
-using System.ComponentModel;
 
 namespace GeradorProtocolo
 {
     public partial class Menu : Form
     {
         PdfService pdfService;
-        string Atendente;
-        DateOnly Retirada;
-        BindingSource BindingSource;
-        BindingList<Item> ProtocoloRetirada;
-        BindingList<Item> ProtocoloLivro;
+        Protocolo protocolo;
         int ClickedRowIndex;
 
         public Menu()
         {
             InitializeComponent();
             pdfService = new();
-            Atendente = "";
-            BindingSource = new();
-            ProtocoloRetirada = new();
-            ProtocoloLivro = new();
+            protocolo = new Protocolo();
             BindData(); // Ensure this is called to set up the data binding
             timePicker.Value = DateTime.Today.AddHours(14);
         }
@@ -29,8 +21,8 @@ namespace GeradorProtocolo
         public void BindData()
         {
             // Binds ProtocoloRetirada to dataGridView, only.
-            BindingSource.DataSource = ProtocoloRetirada;
-            dataGridView.DataSource = BindingSource;
+            protocolo.BindingSource.DataSource = protocolo.ProtocoloRetirada;
+            dataGridView.DataSource = protocolo.BindingSource;
 
             // Configure dataGridView columns: autoGenerateColumns = false; Clear columns; Add columns.
             dataGridView.AutoGenerateColumns = false;
@@ -67,20 +59,19 @@ namespace GeradorProtocolo
             {
                 Item item = new()
                 {
-                    Requerente = textBox_Requerente.Text,
-                    CpfCnpj = textBox_CpfCnpj.Text,
-                    Quantidade = (int)numericUpDown_Certidao.Value,
                     TipoRegistro = textBox_TipoRegistro.Text,
                     NomeParte = textBox_PartesCertidao.Text,
+                    CpfParte = textBox_CpfPartes.Text,
                     Descricao = textBox_Descricao.Text,
                     Valor = Convert.ToDouble(textBox_Valor.Text),
+                    Quantidade = (int)numericUpDown_Certidao.Value,
                     ProtocoloLivro = checkBox_ProtocoloLivro.Checked
                 };
                 if (checkBox_ProtocoloLivro.Checked)
                 {
-                    ProtocoloLivro.Add(item);
+                    protocolo.ProtocoloLivro.Add(item);
                 }
-                ProtocoloRetirada.Add(item);
+                protocolo.ProtocoloRetirada.Add(item);
             }
             catch (Exception)
             {
@@ -88,13 +79,11 @@ namespace GeradorProtocolo
             }
             ClearFields();
 
+            // Return focus to textBox_TipoRegistro.
+            textBox_TipoRegistro.Focus();
+
             // Calculate total value of ProtocoloRetirada.
-            double total = 0;
-            foreach (Item i in ProtocoloRetirada)
-            {
-                total += i.Valor * i.Quantidade;
-            }
-            label_Total.Text = "Total: R$ " + total.ToString();
+            label_Total.Text = "Total: R$ " + protocolo.Total.ToString();
         }
 
         private void ClearFields()
@@ -105,6 +94,7 @@ namespace GeradorProtocolo
             textBox_Descricao.Clear();
             textBox_Valor.Clear();
             checkBox_ProtocoloLivro.Checked = false;
+
         }
 
         private void textBox_CpfCnpj_KeyPress(object sender, KeyPressEventArgs e)
@@ -137,27 +127,34 @@ namespace GeradorProtocolo
         private void button_Gerar_Click(object sender, EventArgs e)
         {
             // Generate the PDF document
-            Atendente = textBox_Atendente.Text;
-            Retirada = DateOnly.FromDateTime(datePicker_Retirada.Value);
-            ProtocoloRetiradaPdfDocument document;
+            protocolo.Requerente = textBox_Requerente.Text;
+            protocolo.CpfCnpj = textBox_CpfCnpj.Text;
+            protocolo.Atendente = textBox_Atendente.Text;
+            protocolo.Retirada = DateOnly.FromDateTime(datePicker_Retirada.Value);
+            protocolo.HorarioRetirada = timePicker.Value;
+            protocolo.IdProvisorio = string.IsNullOrEmpty(textBox_ReciboProv.Text) ? null : Convert.ToInt32(textBox_ReciboProv.Text);
+            ProtocoloRetiradaPdfDocument? document = null;
 
-            if (checkBox_ReciboProvisorio.Checked)
+            if (checkBox_ReciboProvisorio.Checked && string.IsNullOrEmpty(textBox_ReciboProv.Text))
             {
-                document = new(ProtocoloRetirada, Retirada, timePicker.Value, Atendente, Convert.ToInt32(textBox_ReciboProv.Text));
+                MessageBox.Show("A caixa de seleção do Recibo Provisório foi assinalada mas não tem conteúdo. Por favor, verifique.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                document = new(ProtocoloRetirada, Retirada, timePicker.Value, Atendente);
+                document = new ProtocoloRetiradaPdfDocument(protocolo);
             }
 
             try
             {
-                // Generate and show the PDF document
-                pdfService.GenerateProtocoloRetiradaPdfAndShow(document);
+                if (document != null)
+                {
+                    // Generate and show the PDF document
+                    pdfService.GenerateProtocoloRetiradaPdfAndShow(document);
+                }
             }
             catch (Exception)
             {
-                MessageBox.Show("Ocorreu um erro ao gerar o arquivo. Verifique se os campos necessários estão preenchidos e tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ocorreu um erro ao gerar o arquivo. Verifique se os campos necessários estão preenchidos e se a lista tem pelo menos um item.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -173,11 +170,11 @@ namespace GeradorProtocolo
             {
                 try
                 {
-                    if (ProtocoloRetirada[ClickedRowIndex].ProtocoloLivro)
+                    if (protocolo.ProtocoloRetirada[ClickedRowIndex].ProtocoloLivro)
                     {
-                        ProtocoloLivro.RemoveAt(ClickedRowIndex);
+                        protocolo.ProtocoloLivro.RemoveAt(ClickedRowIndex);
                     }
-                    ProtocoloRetirada.RemoveAt(ClickedRowIndex);
+                    protocolo.ProtocoloRetirada.RemoveAt(ClickedRowIndex);
                 }
                 catch (Exception)
                 {
@@ -201,6 +198,39 @@ namespace GeradorProtocolo
             if (e.KeyCode == Keys.Enter)
             {
                 checkBox_ProtocoloLivro.Checked = !checkBox_ProtocoloLivro.Checked;
+            }
+        }
+
+        private void checkBox_Cpf_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Checks when Enter key is pressed.
+            if (e.KeyCode == Keys.Enter)
+            {
+                checkBox_Cpf.Checked = !checkBox_Cpf.Checked;
+            }
+        }
+
+        private void checkBox_ProtocoloLivro_CheckedChanged(object sender, EventArgs e)
+        {
+            checkBox_Cpf.Visible = checkBox_ProtocoloLivro.Checked;
+            if (!checkBox_ProtocoloLivro.Checked)
+            {
+                checkBox_Cpf.Checked = false;
+            }
+        }
+
+        private void checkBox_Cpf_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Cpf.Checked)
+            {
+                label_CpfPartes.Visible = true;
+                textBox_CpfPartes.Visible = true;
+            }
+            else
+            {
+                label_CpfPartes.Visible = false;
+                textBox_CpfPartes.Visible = false;
+                textBox_CpfPartes.Clear();
             }
         }
     }
