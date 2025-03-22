@@ -21,21 +21,41 @@ namespace GeradorProtocolo
             ApplicationConfiguration.Initialize();
             Application.Run(new Menu());
 
-            // DEBUG
+            // Mocking a Protocolo and two Item for debugging
 
             //BindingList<Item> itens = new();
             //itens.Add(new Item
             //{
-            //    Requerente = "Cliente da Silva",
-            //    CpfCnpj = "123.123.123-11",
             //    TipoRegistro = "CERTIDÃO EM INTEIRO TEOR",
             //    NomeParte = "Cliente da Silva e Silva da Cliente",
-            //    Descricao = "Averbação de Retificação L B-12, fls. 11, n 999",
-            //    Valor = 4500.02,
+            //    Descricao = "Alguma string bem grande L B-12, fls. 11, n 999",
+            //    Valor = 45.02,
             //    Quantidade = 2,
             //    ProtocoloLivro = true
             //});
-            //ProtocoloRetiradaPdfDocument document = new(itens, DateOnly.FromDateTime(DateTime.Now), "Kaue");
+            //itens.Add(new Item
+            //{
+            //    TipoRegistro = "CERTIDÃO BREVE RELATORIO",
+            //    NomeParte = "Outro Cliente e Cliente Outro",
+            //    CpfParte = "123.123.123-11 e 333.333.333-33",
+            //    Descricao = "L B-13, fls. 12, n 1000",
+            //    Valor = 45.02,
+            //    Quantidade = 1,
+            //    ProtocoloLivro = true
+            //});
+
+            //Protocolo protocolo = new Protocolo
+            //{
+            //    Requerente = "Cliente da Silva",
+            //    CpfCnpj = "123.123.123-11",
+            //    Atendente = "Kaue",
+            //    IdProvisorio = 15,
+            //    Retirada = DateOnly.FromDateTime(DateTime.Now),
+            //    HorarioRetirada = DateTime.Now,
+            //    ProtocoloRetirada = itens
+            //};
+
+            //ProtocoloRetiradaPdfDocument document = new(protocolo);
             //document.ShowInCompanion();
         }
     }
