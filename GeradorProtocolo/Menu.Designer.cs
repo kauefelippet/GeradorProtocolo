@@ -59,8 +59,7 @@
             textBox_Valor = new TextBox();
             label_ValorCertidao = new Label();
             textBox_PartesCertidao = new TextBox();
-            label_RegistradoCertidao = new Label();
-            label_Servico = new Label();
+            label_PartesCertidao = new Label();
             textBox_ReciboProv = new TextBox();
             checkBox_ReciboProvisorio = new CheckBox();
             label_NumeroReciboProv = new Label();
@@ -146,8 +145,7 @@
             panel1.Controls.Add(textBox_Valor);
             panel1.Controls.Add(label_ValorCertidao);
             panel1.Controls.Add(textBox_PartesCertidao);
-            panel1.Controls.Add(label_RegistradoCertidao);
-            panel1.Controls.Add(label_Servico);
+            panel1.Controls.Add(label_PartesCertidao);
             panel1.Location = new Point(12, 50);
             panel1.Name = "panel1";
             panel1.Size = new Size(760, 399);
@@ -463,32 +461,21 @@
             textBox_PartesCertidao.Name = "textBox_PartesCertidao";
             textBox_PartesCertidao.Size = new Size(284, 16);
             textBox_PartesCertidao.TabIndex = 8;
+            textBox_PartesCertidao.Visible = false;
             // 
-            // label_RegistradoCertidao
+            // label_PartesCertidao
             // 
-            label_RegistradoCertidao.Anchor = AnchorStyles.Left;
-            label_RegistradoCertidao.AutoSize = true;
-            label_RegistradoCertidao.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label_RegistradoCertidao.ForeColor = Color.Black;
-            label_RegistradoCertidao.Location = new Point(0, 56);
-            label_RegistradoCertidao.Name = "label_RegistradoCertidao";
-            label_RegistradoCertidao.Size = new Size(227, 15);
-            label_RegistradoCertidao.TabIndex = 2;
-            label_RegistradoCertidao.Text = "Nome: Registrado | Contraentes | Falecido";
-            label_RegistradoCertidao.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // label_Servico
-            // 
-            label_Servico.AutoSize = true;
-            label_Servico.Dock = DockStyle.Top;
-            label_Servico.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label_Servico.ForeColor = Color.Black;
-            label_Servico.Location = new Point(0, 0);
-            label_Servico.Name = "label_Servico";
-            label_Servico.Size = new Size(46, 15);
-            label_Servico.TabIndex = 1;
-            label_Servico.Text = "Serviço";
-            label_Servico.TextAlign = ContentAlignment.MiddleCenter;
+            label_PartesCertidao.Anchor = AnchorStyles.Left;
+            label_PartesCertidao.AutoSize = true;
+            label_PartesCertidao.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label_PartesCertidao.ForeColor = Color.Black;
+            label_PartesCertidao.Location = new Point(0, 56);
+            label_PartesCertidao.Name = "label_PartesCertidao";
+            label_PartesCertidao.Size = new Size(47, 15);
+            label_PartesCertidao.TabIndex = 2;
+            label_PartesCertidao.Text = "Parte(s)";
+            label_PartesCertidao.TextAlign = ContentAlignment.MiddleLeft;
+            label_PartesCertidao.Visible = false;
             // 
             // textBox_ReciboProv
             // 
@@ -608,9 +595,8 @@
         private Label label_CpfCnpj;
         private TextBox textBox_CpfCnpj;
         private Panel panel1;
-        private Label label_Servico;
         private TextBox textBox_PartesCertidao;
-        private Label label_RegistradoCertidao;
+        private Label label_PartesCertidao;
         private TextBox textBox_Valor;
         private Label label_ValorCertidao;
         private NumericUpDown numericUpDown_Certidao;

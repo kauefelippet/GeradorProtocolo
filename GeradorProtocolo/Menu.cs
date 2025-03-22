@@ -72,12 +72,12 @@ namespace GeradorProtocolo
                     protocolo.ProtocoloLivro.Add(item);
                 }
                 protocolo.ProtocoloRetirada.Add(item);
+                ClearFields();
             }
             catch (Exception)
             {
                 MessageBox.Show("Ocorreu um erro ao adicionar o item. Verifique se os campos necessários estão preenchidos e tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            ClearFields();
 
             // Return focus to textBox_TipoRegistro.
             textBox_TipoRegistro.Focus();
@@ -126,6 +126,25 @@ namespace GeradorProtocolo
 
         private void button_Gerar_Click(object sender, EventArgs e)
         {
+            // Check if ProtocoloRetirada is empty
+            if (protocolo.ProtocoloRetirada.Count == 0)
+            {
+                MessageBox.Show("A lista de itens está vazia. Adicione pelo menos um item antes de gerar o PDF.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            // Check if checkBox_ReciboProvisorio is checked but textBox_ReciboProv is empty
+            if (checkBox_ReciboProvisorio.Checked && string.IsNullOrEmpty(textBox_ReciboProv.Text))
+            {
+                MessageBox.Show("A caixa de seleção do Recibo Provisório foi assinalada mas não tem conteúdo. Por favor, verifique.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            // Check if textBox_Requerente is empty
+            if (string.IsNullOrEmpty(textBox_Requerente.Text))
+            {
+                MessageBox.Show("O campo do requerente está vazio. Preencha-o antes de gerar o PDF.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             // Generate the PDF document
             protocolo.Requerente = textBox_Requerente.Text;
             protocolo.CpfCnpj = textBox_CpfCnpj.Text;
@@ -133,28 +152,18 @@ namespace GeradorProtocolo
             protocolo.Retirada = DateOnly.FromDateTime(datePicker_Retirada.Value);
             protocolo.HorarioRetirada = timePicker.Value;
             protocolo.IdProvisorio = string.IsNullOrEmpty(textBox_ReciboProv.Text) ? null : Convert.ToInt32(textBox_ReciboProv.Text);
-            ProtocoloRetiradaPdfDocument? document = null;
 
-            if (checkBox_ReciboProvisorio.Checked && string.IsNullOrEmpty(textBox_ReciboProv.Text))
-            {
-                MessageBox.Show("A caixa de seleção do Recibo Provisório foi assinalada mas não tem conteúdo. Por favor, verifique.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
-            {
-                document = new ProtocoloRetiradaPdfDocument(protocolo);
-            }
+            // Generate the document
+            ProtocoloRetiradaPdfDocument document = new(protocolo);
 
+            // Generate and show the PDF file
             try
             {
-                if (document != null)
-                {
-                    // Generate and show the PDF document
-                    pdfService.GenerateProtocoloRetiradaPdfAndShow(document);
-                }
+                pdfService.GenerateProtocoloRetiradaPdfAndShow(document);
             }
             catch (Exception)
             {
-                MessageBox.Show("Ocorreu um erro ao gerar o arquivo. Verifique se os campos necessários estão preenchidos e se a lista tem pelo menos um item.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro ao gerar o arquivo. Verifique se os campos do requerente estão preenchidos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -178,7 +187,7 @@ namespace GeradorProtocolo
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Ocorreu um erro ao remover o item. Tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Ocorreu um erro ao remover o item. Verifique se um item na lista foi selecionado e tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -213,9 +222,12 @@ namespace GeradorProtocolo
         private void checkBox_ProtocoloLivro_CheckedChanged(object sender, EventArgs e)
         {
             checkBox_Cpf.Visible = checkBox_ProtocoloLivro.Checked;
+            label_PartesCertidao.Visible = checkBox_ProtocoloLivro.Checked;
+            textBox_PartesCertidao.Visible = checkBox_ProtocoloLivro.Checked;
             if (!checkBox_ProtocoloLivro.Checked)
             {
                 checkBox_Cpf.Checked = false;
+                textBox_PartesCertidao.Clear();
             }
         }
 
