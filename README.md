@@ -3,7 +3,7 @@
 ![C# Badge](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=csharp&logoColor=white)
 ![.Net Badge](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
 
-![image](https://github.com/user-attachments/assets/e3a930f5-12ac-4ba2-a41e-73113f616bbc)
+![image](https://github.com/user-attachments/assets/bfe65270-28fb-400d-80f9-a80459cbfa94)
 
 ## Overview
 
@@ -52,6 +52,7 @@ The project is structured as follows:
     ├── Menu.resx
     ├── Models
     │   └── Item.cs
+    │   └── Protocolo.cs
     ├── Program.cs
     ├── StyleFiles
     │   └── Icon.ico
@@ -63,6 +64,7 @@ The project is structured as follows:
 
 - **Program.cs:** The main entry point for the application.
 - **Menu.cs:** The main form where users enter information and generate protocols.
+- **Models/Protocolo.cs:** The model representing the protocol.
 - **Models/Item.cs:** The model representing an item in the protocol.
 - **Util/ProtocoloRetiradaPdfDocument.cs:** The class responsible for creating the PDF document.
 - **Util/PdfService.cs:** The service class for generating the PDF document.
@@ -78,7 +80,7 @@ This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.t
 ![Badge C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=csharp&logoColor=white)
 ![Badge .Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
 
-![image](https://github.com/user-attachments/assets/e3a930f5-12ac-4ba2-a41e-73113f616bbc)
+![image](https://github.com/user-attachments/assets/bfe65270-28fb-400d-80f9-a80459cbfa94)
 
 ## Visão Geral
 
@@ -127,6 +129,7 @@ A estrutura do projeto é a seguinte:
     ├── Menu.resx
     ├── Models
     │   └── Item.cs
+    │   └── Protocolo.cs
     ├── Program.cs
     ├── StyleFiles
     │   └── Icon.ico
@@ -138,6 +141,7 @@ A estrutura do projeto é a seguinte:
 
 - **Program.cs:** O ponto de entrada principal da aplicação.
 - **Menu.cs:** O formulário principal onde os usuários inserem as informações e geram os protocolos.
+- **Models/Protocolo.cs:** O modelo que representa o protocolo.
 - **Models/Item.cs:** O modelo que representa um item no protocolo.
 - **Util/ProtocoloRetiradaPdfDocument.cs:** A classe responsável por criar o documento PDF.
 - **Util/PdfService.cs:** A classe de serviço para gerar o documento PDF.

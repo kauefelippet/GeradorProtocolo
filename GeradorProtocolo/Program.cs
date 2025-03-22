@@ -1,7 +1,3 @@
-using System.ComponentModel;
-using GeradorProtocolo.Models;
-using GeradorProtocolo.Util;
-using QuestPDF.Companion;
 using QuestPDF.Infrastructure;
 
 namespace GeradorProtocolo
