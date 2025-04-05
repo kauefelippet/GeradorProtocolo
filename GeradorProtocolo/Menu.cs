@@ -148,6 +148,7 @@ namespace GeradorProtocolo
             // Generate the PDF document
             protocolo.Requerente = textBox_Requerente.Text;
             protocolo.CpfCnpj = textBox_CpfCnpj.Text;
+            protocolo.Telefone = textBox_Telefone.Text;
             protocolo.Atendente = textBox_Atendente.Text;
             protocolo.Retirada = DateOnly.FromDateTime(datePicker_Retirada.Value);
             protocolo.HorarioRetirada = timePicker.Value;

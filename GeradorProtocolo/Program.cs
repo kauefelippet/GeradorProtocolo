@@ -42,8 +42,9 @@ namespace GeradorProtocolo
 
             //Protocolo protocolo = new Protocolo
             //{
-            //    Requerente = "Cliente da Silva",
+            //    Requerente = "Cliente da Silva dos Santos de Oliveira",
             //    CpfCnpj = "123.123.123-11",
+            //    Telefone = "(11) 9.1234-5678",
             //    Atendente = "Kaue",
             //    IdProvisorio = 15,
             //    Retirada = DateOnly.FromDateTime(DateTime.Now),

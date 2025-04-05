@@ -6,6 +6,7 @@ namespace GeradorProtocolo.Models
     {
         public string Requerente { get; set; }
         public string CpfCnpj { get; set; }
+        public string? Telefone { get; set; }
         public int? IdProvisorio { get; set; }
         public string Atendente { get; set; }
         public DateOnly Retirada { get; set; }
@@ -19,6 +20,7 @@ namespace GeradorProtocolo.Models
         {
             Requerente = "";
             CpfCnpj = "";
+            Telefone = null;
             Atendente = "";
             BindingSource = new BindingSource();
             ProtocoloRetirada = new BindingList<Item>();

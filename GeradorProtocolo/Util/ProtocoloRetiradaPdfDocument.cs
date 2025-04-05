@@ -56,7 +56,7 @@ namespace GeradorProtocolo.Util
         {
             column.Item().Row(row =>
             {
-                row.ConstantItem(370).Column(column =>
+                row.ConstantItem(369).Column(column =>
                 {
                     column.Item().Text(text =>
                     {
@@ -70,6 +70,14 @@ namespace GeradorProtocolo.Util
                         text.Span("Pagamento Prévio: ").FontSize(10).Bold();
                         text.Span($"{protocolo.Total:C}").FontSize(10);
                     });
+                    if (!(String.IsNullOrEmpty(protocolo.Telefone)))
+                    {
+                        column.Item().Text(text =>
+                        {
+                            text.Span("Contato: ").FontSize(10).Bold();
+                            text.Span($"{protocolo.Telefone}").FontSize(10);
+                        });
+                    }
                 });
 
                 row.RelativeItem().Column(column =>
@@ -85,6 +93,12 @@ namespace GeradorProtocolo.Util
                         text.Span($"{DateTime.Now:dd/MM/yyyy HH:mm}").FontSize(10);
                     });
                     column.Item().Text($"Retirada: {protocolo.Retirada:dd/MM/yyyy} a partir das {protocolo.HorarioRetirada:HH:mm}").AlignRight().FontSize(10).Bold();
+                    column.Item().Text(text =>
+                    {
+                        text.Span("Telefones: ").FontSize(10).Bold();
+                        text.Span("(11) 4023-7711 (11) 4022-4744").FontSize(10);
+                        text.AlignRight();
+                    });
                 });
             });
         }

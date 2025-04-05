@@ -43,6 +43,7 @@
             checkBox_Cpf = new CheckBox();
             label_HorarioRetirada = new Label();
             timePicker = new DateTimePicker();
+            label_Total = new Label();
             checkBox_ProtocoloLivro = new CheckBox();
             button_Gerar = new Button();
             button_Remover = new Button();
@@ -63,9 +64,10 @@
             textBox_ReciboProv = new TextBox();
             checkBox_ReciboProvisorio = new CheckBox();
             label_NumeroReciboProv = new Label();
-            label_Total = new Label();
             label_Atendente = new Label();
             textBox_Atendente = new TextBox();
+            textBox_Telefone = new TextBox();
+            label_Telefone = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown_Certidao).BeginInit();
@@ -129,6 +131,7 @@
             panel1.Controls.Add(checkBox_Cpf);
             panel1.Controls.Add(label_HorarioRetirada);
             panel1.Controls.Add(timePicker);
+            panel1.Controls.Add(label_Total);
             panel1.Controls.Add(checkBox_ProtocoloLivro);
             panel1.Controls.Add(button_Gerar);
             panel1.Controls.Add(button_Remover);
@@ -146,9 +149,9 @@
             panel1.Controls.Add(label_ValorCertidao);
             panel1.Controls.Add(textBox_PartesCertidao);
             panel1.Controls.Add(label_PartesCertidao);
-            panel1.Location = new Point(12, 50);
+            panel1.Location = new Point(12, 54);
             panel1.Name = "panel1";
-            panel1.Size = new Size(760, 399);
+            panel1.Size = new Size(760, 395);
             panel1.TabIndex = 4;
             // 
             // label_CpfPartes
@@ -157,7 +160,7 @@
             label_CpfPartes.AutoSize = true;
             label_CpfPartes.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_CpfPartes.ForeColor = Color.Black;
-            label_CpfPartes.Location = new Point(290, 56);
+            label_CpfPartes.Location = new Point(290, 54);
             label_CpfPartes.Name = "label_CpfPartes";
             label_CpfPartes.Size = new Size(97, 15);
             label_CpfPartes.TabIndex = 22;
@@ -174,7 +177,7 @@
             textBox_CpfPartes.Location = new Point(290, 73);
             textBox_CpfPartes.Name = "textBox_CpfPartes";
             textBox_CpfPartes.Size = new Size(318, 16);
-            textBox_CpfPartes.TabIndex = 9;
+            textBox_CpfPartes.TabIndex = 10;
             textBox_CpfPartes.Visible = false;
             // 
             // checkBox_Cpf
@@ -184,7 +187,7 @@
             checkBox_Cpf.Location = new Point(429, 35);
             checkBox_Cpf.Name = "checkBox_Cpf";
             checkBox_Cpf.Size = new Size(118, 19);
-            checkBox_Cpf.TabIndex = 7;
+            checkBox_Cpf.TabIndex = 8;
             checkBox_Cpf.Text = "CPF no Protocolo";
             checkBox_Cpf.UseVisualStyleBackColor = true;
             checkBox_Cpf.Visible = false;
@@ -197,7 +200,7 @@
             label_HorarioRetirada.AutoSize = true;
             label_HorarioRetirada.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_HorarioRetirada.ForeColor = Color.Black;
-            label_HorarioRetirada.Location = new Point(290, 133);
+            label_HorarioRetirada.Location = new Point(290, 131);
             label_HorarioRetirada.Name = "label_HorarioRetirada";
             label_HorarioRetirada.Size = new Size(47, 15);
             label_HorarioRetirada.TabIndex = 19;
@@ -217,8 +220,21 @@
             timePicker.RightToLeft = RightToLeft.No;
             timePicker.ShowUpDown = true;
             timePicker.Size = new Size(55, 23);
-            timePicker.TabIndex = 14;
+            timePicker.TabIndex = 15;
             timePicker.Value = new DateTime(2025, 3, 18, 14, 0, 0, 0);
+            // 
+            // label_Total
+            // 
+            label_Total.Anchor = AnchorStyles.Left;
+            label_Total.AutoSize = true;
+            label_Total.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label_Total.ForeColor = Color.Black;
+            label_Total.Location = new Point(290, 175);
+            label_Total.Name = "label_Total";
+            label_Total.Size = new Size(40, 17);
+            label_Total.TabIndex = 9;
+            label_Total.Text = "Total:";
+            label_Total.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // checkBox_ProtocoloLivro
             // 
@@ -227,7 +243,7 @@
             checkBox_ProtocoloLivro.Location = new Point(290, 35);
             checkBox_ProtocoloLivro.Name = "checkBox_ProtocoloLivro";
             checkBox_ProtocoloLivro.Size = new Size(133, 19);
-            checkBox_ProtocoloLivro.TabIndex = 6;
+            checkBox_ProtocoloLivro.TabIndex = 7;
             checkBox_ProtocoloLivro.Text = "Protocolo para Livro";
             checkBox_ProtocoloLivro.UseVisualStyleBackColor = true;
             checkBox_ProtocoloLivro.CheckedChanged += checkBox_ProtocoloLivro_CheckedChanged;
@@ -241,7 +257,7 @@
             button_Gerar.Location = new Point(169, 174);
             button_Gerar.Name = "button_Gerar";
             button_Gerar.Size = new Size(115, 23);
-            button_Gerar.TabIndex = 17;
+            button_Gerar.TabIndex = 18;
             button_Gerar.Text = "Gerar Protocolo";
             button_Gerar.UseVisualStyleBackColor = false;
             button_Gerar.Click += button_Gerar_Click;
@@ -254,7 +270,7 @@
             button_Remover.Location = new Point(84, 174);
             button_Remover.Name = "button_Remover";
             button_Remover.Size = new Size(79, 23);
-            button_Remover.TabIndex = 16;
+            button_Remover.TabIndex = 17;
             button_Remover.Text = "Remover";
             button_Remover.UseVisualStyleBackColor = false;
             button_Remover.Click += button_Remover_Click;
@@ -267,7 +283,7 @@
             button_Adicionar.Location = new Point(0, 174);
             button_Adicionar.Name = "button_Adicionar";
             button_Adicionar.Size = new Size(77, 23);
-            button_Adicionar.TabIndex = 15;
+            button_Adicionar.TabIndex = 16;
             button_Adicionar.Text = "Adicionar";
             button_Adicionar.UseVisualStyleBackColor = false;
             button_Adicionar.Click += button_Adicionar_Click;
@@ -329,7 +345,7 @@
             label_RetiradaCertidao.AutoSize = true;
             label_RetiradaCertidao.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_RetiradaCertidao.ForeColor = Color.Black;
-            label_RetiradaCertidao.Location = new Point(169, 133);
+            label_RetiradaCertidao.Location = new Point(169, 131);
             label_RetiradaCertidao.Name = "label_RetiradaCertidao";
             label_RetiradaCertidao.Size = new Size(50, 15);
             label_RetiradaCertidao.TabIndex = 16;
@@ -347,7 +363,7 @@
             datePicker_Retirada.Location = new Point(169, 148);
             datePicker_Retirada.Name = "datePicker_Retirada";
             datePicker_Retirada.Size = new Size(115, 23);
-            datePicker_Retirada.TabIndex = 13;
+            datePicker_Retirada.TabIndex = 14;
             // 
             // textBox_TipoRegistro
             // 
@@ -359,7 +375,7 @@
             textBox_TipoRegistro.Location = new Point(0, 36);
             textBox_TipoRegistro.Name = "textBox_TipoRegistro";
             textBox_TipoRegistro.Size = new Size(284, 16);
-            textBox_TipoRegistro.TabIndex = 5;
+            textBox_TipoRegistro.TabIndex = 6;
             // 
             // label_Ato
             // 
@@ -367,7 +383,7 @@
             label_Ato.AutoSize = true;
             label_Ato.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_Ato.ForeColor = Color.Black;
-            label_Ato.Location = new Point(0, 19);
+            label_Ato.Location = new Point(0, 17);
             label_Ato.Name = "label_Ato";
             label_Ato.Size = new Size(26, 15);
             label_Ato.TabIndex = 13;
@@ -384,7 +400,7 @@
             textBox_Descricao.Location = new Point(0, 110);
             textBox_Descricao.Name = "textBox_Descricao";
             textBox_Descricao.Size = new Size(284, 16);
-            textBox_Descricao.TabIndex = 10;
+            textBox_Descricao.TabIndex = 11;
             // 
             // label_RefRegistro
             // 
@@ -392,7 +408,7 @@
             label_RefRegistro.AutoSize = true;
             label_RefRegistro.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_RefRegistro.ForeColor = Color.Black;
-            label_RefRegistro.Location = new Point(0, 93);
+            label_RefRegistro.Location = new Point(0, 91);
             label_RefRegistro.Name = "label_RefRegistro";
             label_RefRegistro.Size = new Size(186, 15);
             label_RefRegistro.TabIndex = 11;
@@ -407,7 +423,7 @@
             numericUpDown_Certidao.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericUpDown_Certidao.Name = "numericUpDown_Certidao";
             numericUpDown_Certidao.Size = new Size(79, 19);
-            numericUpDown_Certidao.TabIndex = 12;
+            numericUpDown_Certidao.TabIndex = 13;
             numericUpDown_Certidao.TextAlign = HorizontalAlignment.Center;
             numericUpDown_Certidao.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
@@ -417,7 +433,7 @@
             label_Quantidade.AutoSize = true;
             label_Quantidade.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_Quantidade.ForeColor = Color.Black;
-            label_Quantidade.Location = new Point(84, 133);
+            label_Quantidade.Location = new Point(84, 131);
             label_Quantidade.Name = "label_Quantidade";
             label_Quantidade.Size = new Size(69, 15);
             label_Quantidade.TabIndex = 9;
@@ -434,7 +450,7 @@
             textBox_Valor.Location = new Point(0, 151);
             textBox_Valor.Name = "textBox_Valor";
             textBox_Valor.Size = new Size(77, 17);
-            textBox_Valor.TabIndex = 11;
+            textBox_Valor.TabIndex = 12;
             textBox_Valor.KeyPress += textBox_Valor_KeyPress;
             // 
             // label_ValorCertidao
@@ -443,7 +459,7 @@
             label_ValorCertidao.AutoSize = true;
             label_ValorCertidao.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_ValorCertidao.ForeColor = Color.Black;
-            label_ValorCertidao.Location = new Point(0, 133);
+            label_ValorCertidao.Location = new Point(0, 131);
             label_ValorCertidao.Name = "label_ValorCertidao";
             label_ValorCertidao.Size = new Size(62, 15);
             label_ValorCertidao.TabIndex = 6;
@@ -460,7 +476,7 @@
             textBox_PartesCertidao.Location = new Point(0, 73);
             textBox_PartesCertidao.Name = "textBox_PartesCertidao";
             textBox_PartesCertidao.Size = new Size(284, 16);
-            textBox_PartesCertidao.TabIndex = 8;
+            textBox_PartesCertidao.TabIndex = 9;
             textBox_PartesCertidao.Visible = false;
             // 
             // label_PartesCertidao
@@ -469,7 +485,7 @@
             label_PartesCertidao.AutoSize = true;
             label_PartesCertidao.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_PartesCertidao.ForeColor = Color.Black;
-            label_PartesCertidao.Location = new Point(0, 56);
+            label_PartesCertidao.Location = new Point(0, 54);
             label_PartesCertidao.Name = "label_PartesCertidao";
             label_PartesCertidao.Size = new Size(47, 15);
             label_PartesCertidao.TabIndex = 2;
@@ -518,26 +534,13 @@
             label_NumeroReciboProv.TextAlign = ContentAlignment.MiddleLeft;
             label_NumeroReciboProv.Visible = false;
             // 
-            // label_Total
-            // 
-            label_Total.Anchor = AnchorStyles.Left;
-            label_Total.AutoSize = true;
-            label_Total.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label_Total.ForeColor = Color.Black;
-            label_Total.Location = new Point(299, 30);
-            label_Total.Name = "label_Total";
-            label_Total.Size = new Size(40, 17);
-            label_Total.TabIndex = 9;
-            label_Total.Text = "Total:";
-            label_Total.TextAlign = ContentAlignment.MiddleLeft;
-            // 
             // label_Atendente
             // 
             label_Atendente.Anchor = AnchorStyles.Left;
             label_Atendente.AutoSize = true;
             label_Atendente.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_Atendente.ForeColor = Color.Black;
-            label_Atendente.Location = new Point(421, 30);
+            label_Atendente.Location = new Point(560, 30);
             label_Atendente.Name = "label_Atendente";
             label_Atendente.Size = new Size(75, 17);
             label_Atendente.TabIndex = 10;
@@ -551,10 +554,35 @@
             textBox_Atendente.CharacterCasing = CharacterCasing.Upper;
             textBox_Atendente.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox_Atendente.ForeColor = Color.Black;
-            textBox_Atendente.Location = new Point(502, 30);
+            textBox_Atendente.Location = new Point(635, 30);
             textBox_Atendente.Name = "textBox_Atendente";
-            textBox_Atendente.Size = new Size(270, 18);
-            textBox_Atendente.TabIndex = 4;
+            textBox_Atendente.Size = new Size(137, 18);
+            textBox_Atendente.TabIndex = 5;
+            // 
+            // textBox_Telefone
+            // 
+            textBox_Telefone.BackColor = SystemColors.ControlLight;
+            textBox_Telefone.BorderStyle = BorderStyle.None;
+            textBox_Telefone.CharacterCasing = CharacterCasing.Upper;
+            textBox_Telefone.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox_Telefone.ForeColor = Color.Black;
+            textBox_Telefone.Location = new Point(369, 31);
+            textBox_Telefone.Name = "textBox_Telefone";
+            textBox_Telefone.Size = new Size(190, 18);
+            textBox_Telefone.TabIndex = 4;
+            // 
+            // label_Telefone
+            // 
+            label_Telefone.Anchor = AnchorStyles.Left;
+            label_Telefone.AutoSize = true;
+            label_Telefone.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label_Telefone.ForeColor = Color.Black;
+            label_Telefone.Location = new Point(302, 31);
+            label_Telefone.Name = "label_Telefone";
+            label_Telefone.Size = new Size(61, 17);
+            label_Telefone.TabIndex = 22;
+            label_Telefone.Text = "Telefone:";
+            label_Telefone.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // Menu
             // 
@@ -562,12 +590,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDark;
             ClientSize = new Size(784, 461);
+            Controls.Add(textBox_Telefone);
+            Controls.Add(label_Telefone);
             Controls.Add(textBox_Atendente);
             Controls.Add(textBox_ReciboProv);
             Controls.Add(label_Atendente);
             Controls.Add(label_NumeroReciboProv);
             Controls.Add(checkBox_ReciboProvisorio);
-            Controls.Add(label_Total);
             Controls.Add(panel1);
             Controls.Add(textBox_CpfCnpj);
             Controls.Add(label_CpfCnpj);
@@ -623,5 +652,7 @@
         private Label label_CpfPartes;
         private TextBox textBox_CpfPartes;
         private CheckBox checkBox_Cpf;
+        private TextBox textBox_Telefone;
+        private Label label_Telefone;
     }
 }
