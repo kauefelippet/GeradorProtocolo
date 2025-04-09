@@ -83,7 +83,7 @@ namespace GeradorProtocolo
             textBox_TipoRegistro.Focus();
 
             // Calculate total value of ProtocoloRetirada.
-            label_Total.Text = "Total: R$ " + protocolo.Total.ToString();
+            label_Total.Text = "Total: " + protocolo.Total.ToString("C");
         }
 
         private void ClearFields()
@@ -171,6 +171,60 @@ namespace GeradorProtocolo
         private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             ClickedRowIndex = e.RowIndex;
+
+            Item item = protocolo.ProtocoloRetirada[ClickedRowIndex];
+            // Fill the fields with the item data
+            textBox_TipoRegistro.Text = item.TipoRegistro;
+            textBox_PartesCertidao.Text = item.NomeParte;
+            checkBox_ProtocoloLivro.Checked = item.ProtocoloLivro;
+            checkBox_Cpf.Checked = !String.IsNullOrEmpty(item.CpfParte);
+            textBox_CpfPartes.Text = item.CpfParte;
+            textBox_Descricao.Text = item.Descricao;
+            textBox_Valor.Text = item.Valor.ToString();
+            numericUpDown_Certidao.Value = item.Quantidade;
+        }
+        private void button_Editar_Click(object sender, EventArgs e)
+        {
+            if (ClickedRowIndex >= 0)
+            {
+                // Edit item in ProtocoloRetirada. If checkBox_ProtocoloLivro is checked, edit item in ProtocoloLivro.
+                try
+                {
+                    Item item = protocolo.ProtocoloRetirada[ClickedRowIndex];
+
+                    item.TipoRegistro = textBox_TipoRegistro.Text;
+                    item.NomeParte = textBox_PartesCertidao.Text;
+                    item.CpfParte = textBox_CpfPartes.Text;
+                    item.Descricao = textBox_Descricao.Text;
+                    item.Valor = Convert.ToDouble(textBox_Valor.Text);
+                    item.Quantidade = (int)numericUpDown_Certidao.Value;
+                    item.ProtocoloLivro = checkBox_ProtocoloLivro.Checked;
+
+                    if (!checkBox_ProtocoloLivro.Checked)
+                    {
+                        protocolo.ProtocoloLivro.Remove(item);
+                    }
+                    else
+                    {
+                        if (protocolo.ProtocoloLivro.Count <= ClickedRowIndex)
+                        {
+                            protocolo.ProtocoloLivro.Add(item);
+                        }
+                    }
+                    ClearFields();
+
+                    // Update the DataGridView and Total to reflect the changes
+                    dataGridView.Refresh();
+                    label_Total.Text = "Total: " + protocolo.Total.ToString("C");
+
+                    // Return focus to textBox_TipoRegistro.
+                    textBox_TipoRegistro.Focus();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Ocorreu um erro ao editar o item. Verifique se os campos necessários estão preenchidos e tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
         }
 
         private void button_Remover_Click(object sender, EventArgs e)
@@ -185,6 +239,8 @@ namespace GeradorProtocolo
                         protocolo.ProtocoloLivro.RemoveAt(ClickedRowIndex);
                     }
                     protocolo.ProtocoloRetirada.RemoveAt(ClickedRowIndex);
+
+                    label_Total.Text = "Total: " + protocolo.Total.ToString("C");
                 }
                 catch (Exception)
                 {
@@ -246,5 +302,6 @@ namespace GeradorProtocolo
                 textBox_CpfPartes.Clear();
             }
         }
+
     }
 }
