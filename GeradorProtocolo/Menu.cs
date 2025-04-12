@@ -13,9 +13,10 @@ namespace GeradorProtocolo
         {
             InitializeComponent();
             pdfService = new();
-            protocolo = new Protocolo();
+            protocolo = new();
             BindData(); // Ensure this is called to set up the data binding
             timePicker.Value = DateTime.Today.AddHours(14);
+            label_Total.Text = "Total: " + protocolo.Total.ToString("C");
         }
 
         public void BindData()
@@ -239,6 +240,7 @@ namespace GeradorProtocolo
                         protocolo.ProtocoloLivro.RemoveAt(ClickedRowIndex);
                     }
                     protocolo.ProtocoloRetirada.RemoveAt(ClickedRowIndex);
+                    ClearFields();
 
                     label_Total.Text = "Total: " + protocolo.Total.ToString("C");
                 }
@@ -303,5 +305,30 @@ namespace GeradorProtocolo
             }
         }
 
+        private void button_Limpar_Click(object sender, EventArgs e)
+        {
+            // Clears all fields and data
+            textBox_Requerente.Clear();
+            textBox_ReciboProv.Clear();
+            textBox_CpfCnpj.Clear();
+            textBox_Telefone.Clear();
+            textBox_Atendente.Clear();
+            textBox_TipoRegistro.Clear();
+            textBox_PartesCertidao.Clear();
+            textBox_CpfPartes.Clear();
+            textBox_Descricao.Clear();
+            textBox_Valor.Clear();
+            checkBox_ReciboProvisorio.Checked = false;
+            checkBox_ProtocoloLivro.Checked = false;
+            checkBox_Cpf.Checked = false;
+            numericUpDown_Certidao.Value = 1;
+            datePicker_Retirada.Value = DateTime.Today;
+            timePicker.Value = DateTime.Today.AddHours(14);
+            // Remove all items from ProtocoloRetirada and ProtocoloLivro
+            protocolo.ProtocoloRetirada.Clear();
+            protocolo.ProtocoloLivro.Clear();
+            // Updates Total label
+            label_Total.Text = "Total: " + protocolo.Total.ToString("C");
+        }
     }
 }

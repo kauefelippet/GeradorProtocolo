@@ -3,7 +3,7 @@
 ![C# Badge](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=csharp&logoColor=white)
 ![.Net Badge](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
 
-![image](https://github.com/user-attachments/assets/bfe65270-28fb-400d-80f9-a80459cbfa94)
+![image](https://github.com/user-attachments/assets/c72cbc78-7a5a-4c4f-9a3e-460081ceab92)
 
 ## Overview
 
@@ -80,7 +80,7 @@ This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.t
 ![Badge C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=csharp&logoColor=white)
 ![Badge .Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
 
-![image](https://github.com/user-attachments/assets/bfe65270-28fb-400d-80f9-a80459cbfa94)
+![image](https://github.com/user-attachments/assets/c72cbc78-7a5a-4c4f-9a3e-460081ceab92)
 
 ## Visão Geral
 
@@ -88,7 +88,7 @@ O projeto GeradorProtocolo foi criado para otimizar o processo de geração de p
 
 ## Funcionalidades
 - **Geração Automática de Protocolos:** Gere automaticamente protocolos com base nas informações inseridas pelo usuário.
-- **Geração de PDF:** Utilize a biblioteca QuestPDF para criar documentos PDF.
+- **Geração de PDF:** Utiliza a biblioteca QuestPDF para criar documentos PDF.
 - **Interface Amigável:** Interface simples e intuitiva para inserir as informações necessárias.
 - **Campos Personalizáveis:** Preencha os campos facilmente.
 - **Suporte para Múltiplos Itens:** Lide com múltiplos itens em um único protocolo.

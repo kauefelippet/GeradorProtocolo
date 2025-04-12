@@ -38,6 +38,7 @@
             label_CpfCnpj = new Label();
             textBox_CpfCnpj = new TextBox();
             panel1 = new Panel();
+            button_Limpar = new Button();
             button_Editar = new Button();
             label_CpfPartes = new Label();
             textBox_CpfPartes = new TextBox();
@@ -127,6 +128,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(button_Limpar);
             panel1.Controls.Add(button_Editar);
             panel1.Controls.Add(label_CpfPartes);
             panel1.Controls.Add(textBox_CpfPartes);
@@ -155,6 +157,19 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(760, 395);
             panel1.TabIndex = 6;
+            // 
+            // button_Limpar
+            // 
+            button_Limpar.BackColor = SystemColors.ControlLight;
+            button_Limpar.FlatAppearance.BorderSize = 0;
+            button_Limpar.FlatStyle = FlatStyle.Flat;
+            button_Limpar.Location = new Point(645, 176);
+            button_Limpar.Name = "button_Limpar";
+            button_Limpar.Size = new Size(115, 23);
+            button_Limpar.TabIndex = 20;
+            button_Limpar.Text = "Limpar Campos";
+            button_Limpar.UseVisualStyleBackColor = false;
+            button_Limpar.Click += button_Limpar_Click;
             // 
             // button_Editar
             // 
@@ -249,7 +264,7 @@
             label_Total.Name = "label_Total";
             label_Total.Size = new Size(40, 17);
             label_Total.TabIndex = 20;
-            label_Total.Text = "Total:";
+            label_Total.Text = "Total:\r\n";
             label_Total.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // checkBox_ProtocoloLivro
@@ -296,7 +311,7 @@
             button_Adicionar.BackColor = SystemColors.ControlLight;
             button_Adicionar.FlatAppearance.BorderSize = 0;
             button_Adicionar.FlatStyle = FlatStyle.Flat;
-            button_Adicionar.Location = new Point(0, 174);
+            button_Adicionar.Location = new Point(0, 175);
             button_Adicionar.Name = "button_Adicionar";
             button_Adicionar.Size = new Size(77, 23);
             button_Adicionar.TabIndex = 16;
@@ -352,7 +367,7 @@
             dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView.Size = new Size(760, 196);
-            dataGridView.TabIndex = 20;
+            dataGridView.TabIndex = 21;
             dataGridView.CellClick += dataGridView_CellClick;
             // 
             // label_RetiradaCertidao
@@ -673,5 +688,6 @@
         private TextBox textBox_Telefone;
         private Label label_Telefone;
         private Button button_Editar;
+        private Button button_Limpar;
     }
 }
