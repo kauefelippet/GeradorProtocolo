@@ -3,7 +3,7 @@
 ![C# Badge](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=csharp&logoColor=white)
 ![.Net Badge](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
 
-![image](https://github.com/user-attachments/assets/c72cbc78-7a5a-4c4f-9a3e-460081ceab92)
+![image](https://github.com/user-attachments/assets/625d2d8e-cd16-4729-b29d-f79047c94764)
 
 ## Overview
 
@@ -58,7 +58,8 @@ The project is structured as follows:
     │   └── Icon.ico
     └── Util
     │   ├── PdfService.cs
-    │   └── ProtocoloRetiradaPdfDocument.cs
+    │   ├── ProtocoloRetiradaPdfDocument.cs
+    │   └── Validation.cs
 └── LICENSE.txt
 </pre>
 
@@ -68,6 +69,7 @@ The project is structured as follows:
 - **Models/Item.cs:** The model representing an item in the protocol.
 - **Util/ProtocoloRetiradaPdfDocument.cs:** The class responsible for creating the PDF document.
 - **Util/PdfService.cs:** The service class for generating the PDF document.
+- **Util/Validation.cs:** Data validation class.
 
 ## License
 
@@ -80,7 +82,7 @@ This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.t
 ![Badge C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=csharp&logoColor=white)
 ![Badge .Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
 
-![image](https://github.com/user-attachments/assets/c72cbc78-7a5a-4c4f-9a3e-460081ceab92)
+![image](https://github.com/user-attachments/assets/625d2d8e-cd16-4729-b29d-f79047c94764)
 
 ## Visão Geral
 
@@ -135,7 +137,8 @@ A estrutura do projeto é a seguinte:
     │   └── Icon.ico
     └── Util
     │   ├── PdfService.cs
-    │   └── ProtocoloRetiradaPdfDocument.cs
+    │   ├── ProtocoloRetiradaPdfDocument.cs
+    │   └── Validation.cs
 └── LICENSE.txt
 </pre>
 
@@ -145,6 +148,7 @@ A estrutura do projeto é a seguinte:
 - **Models/Item.cs:** O modelo que representa um item no protocolo.
 - **Util/ProtocoloRetiradaPdfDocument.cs:** A classe responsável por criar o documento PDF.
 - **Util/PdfService.cs:** A classe de serviço para gerar o documento PDF.
+- **Util/Validation.cs:** Classe de validação de dados.
 
 ## Licença
 

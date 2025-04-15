@@ -38,19 +38,32 @@ namespace GeradorProtocolo
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
-        private void checkBox_ReciboProvisorio_CheckedChanged(object sender, EventArgs e)
+        private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (checkBox_ReciboProvisorio.Checked)
-            {
-                label_NumeroReciboProv.Visible = true;
-                textBox_ReciboProv.Visible = true;
-            }
-            else
-            {
-                label_NumeroReciboProv.Visible = false;
-                textBox_ReciboProv.Visible = false;
-                textBox_ReciboProv.Clear();
-            }
+            ClickedRowIndex = e.RowIndex;
+
+            Item item = protocolo.ProtocoloRetirada[ClickedRowIndex];
+            // Fill the fields with the item data
+            textBox_TipoRegistro.Text = item.TipoRegistro;
+            textBox_PartesCertidao.Text = item.NomeParte;
+            checkBox_ProtocoloLivro.Checked = item.ProtocoloLivro;
+            checkBox_Cpf.Checked = !string.IsNullOrEmpty(item.CpfParte) || !string.IsNullOrEmpty(item.CpfParte2);
+            textBox_CpfDele.Text = item.CpfParte;
+            textBox_CpfDela.Text = item.CpfParte2;
+            textBox_Descricao.Text = item.Descricao;
+            textBox_Valor.Text = item.Valor.ToString();
+            numericUpDown_Certidao.Value = item.Quantidade;
+        }
+
+        private void ClearFields()
+        {
+            numericUpDown_Certidao.Value = 1;
+            textBox_TipoRegistro.Clear();
+            textBox_PartesCertidao.Clear();
+            textBox_Descricao.Clear();
+            textBox_Valor.Clear();
+            checkBox_ProtocoloLivro.Checked = false;
+
         }
 
         private void button_Adicionar_Click(object sender, EventArgs e)
@@ -86,111 +99,6 @@ namespace GeradorProtocolo
 
             // Calculate total value of ProtocoloRetirada.
             label_Total.Text = "Total: " + protocolo.Total.ToString("C");
-        }
-
-        private void ClearFields()
-        {
-            numericUpDown_Certidao.Value = 1;
-            textBox_TipoRegistro.Clear();
-            textBox_PartesCertidao.Clear();
-            textBox_Descricao.Clear();
-            textBox_Valor.Clear();
-            checkBox_ProtocoloLivro.Checked = false;
-
-        }
-
-        private void textBox_CpfCnpj_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Allow only numbers and backspace.
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void textBox_Valor_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Allow only numbers, ., ,, and backspace.
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',')
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void textBox_ReciboProv_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Allow only numbers and backspace.
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void button_Gerar_Click(object sender, EventArgs e)
-        {
-            // Check if ProtocoloRetirada is empty
-            if (protocolo.ProtocoloRetirada.Count == 0)
-            {
-                MessageBox.Show("A lista de itens está vazia. Adicione pelo menos um item antes de gerar o PDF.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            // Check if checkBox_ReciboProvisorio is checked but textBox_ReciboProv is empty
-            if (checkBox_ReciboProvisorio.Checked && string.IsNullOrEmpty(textBox_ReciboProv.Text))
-            {
-                MessageBox.Show("A caixa de seleção do Recibo Provisório foi assinalada mas não tem conteúdo. Por favor, verifique.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            // Check if textBox_Requerente is empty
-            if (string.IsNullOrEmpty(textBox_Requerente.Text))
-            {
-                MessageBox.Show("O campo do requerente está vazio. Preencha-o antes de gerar o PDF.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            // Check if textBox_Atendente is empty
-            if (string.IsNullOrEmpty(textBox_Atendente.Text))
-            {
-                MessageBox.Show("O campo do atendente está vazio. Preencha-o antes de gerar o PDF.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Generate the PDF document
-            protocolo.Requerente = textBox_Requerente.Text;
-            protocolo.CpfCnpj = textBox_CpfCnpj.Text;
-            protocolo.Telefone = textBox_Telefone.Text;
-            protocolo.Atendente = textBox_Atendente.Text;
-            protocolo.Retirada = DateOnly.FromDateTime(datePicker_Retirada.Value);
-            protocolo.HorarioRetirada = timePicker.Value;
-            protocolo.IdProvisorio = string.IsNullOrEmpty(textBox_ReciboProv.Text) ? null : Convert.ToInt32(textBox_ReciboProv.Text);
-
-            // Generate the document
-            ProtocoloRetiradaPdfDocument document = new(protocolo);
-
-            // Generate and show the PDF file
-            try
-            {
-                pdfService.GenerateProtocoloRetiradaPdfAndShow(document);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Ocorreu um erro ao gerar o arquivo. Verifique se os campos do requerente estão preenchidos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            ClickedRowIndex = e.RowIndex;
-
-            Item item = protocolo.ProtocoloRetirada[ClickedRowIndex];
-            // Fill the fields with the item data
-            textBox_TipoRegistro.Text = item.TipoRegistro;
-            textBox_PartesCertidao.Text = item.NomeParte;
-            checkBox_ProtocoloLivro.Checked = item.ProtocoloLivro;
-            checkBox_Cpf.Checked = !string.IsNullOrEmpty(item.CpfParte) || !string.IsNullOrEmpty(item.CpfParte2);
-            textBox_CpfDele.Text = item.CpfParte;
-            textBox_CpfDela.Text = item.CpfParte2;
-            textBox_Descricao.Text = item.Descricao;
-            textBox_Valor.Text = item.Valor.ToString();
-            numericUpDown_Certidao.Value = item.Quantidade;
         }
 
         private void button_Editar_Click(object sender, EventArgs e)
@@ -261,30 +169,98 @@ namespace GeradorProtocolo
             }
         }
 
-        private void checkBox_ReciboProvisorio_KeyDown(object sender, KeyEventArgs e)
+        private void button_Gerar_Click(object sender, EventArgs e)
         {
-            // Checks when Enter key is pressed.
-            if (e.KeyCode == Keys.Enter)
+            // Check if ProtocoloRetirada is empty
+            if (protocolo.ProtocoloRetirada.Count == 0)
             {
-                checkBox_ReciboProvisorio.Checked = !checkBox_ReciboProvisorio.Checked;
+                MessageBox.Show("A lista de itens está vazia. Adicione pelo menos um item antes de gerar o PDF.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                button_Adicionar.Focus();
+                return;
+            }
+            // Check if checkBox_ReciboProvisorio is checked but textBox_ReciboProv is empty
+            if (checkBox_ReciboProvisorio.Checked && string.IsNullOrEmpty(textBox_ReciboProv.Text))
+            {
+                MessageBox.Show("A caixa de seleção do Recibo Provisório foi assinalada mas não tem conteúdo. Por favor, verifique.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                checkBox_ReciboProvisorio.Focus();
+                return;
+            }
+            // Check if textBox_Requerente is empty
+            if (string.IsNullOrEmpty(textBox_Requerente.Text))
+            {
+                MessageBox.Show("O campo do requerente está vazio. Preencha-o antes de gerar o PDF.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox_Requerente.Focus();
+                return;
+            }
+            // Check if textBox_Atendente is empty
+            if (string.IsNullOrEmpty(textBox_Atendente.Text))
+            {
+                MessageBox.Show("O campo do atendente está vazio. Preencha-o antes de gerar o PDF.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox_Atendente.Focus();
+                return;
+            }
+
+            // Generate the PDF document
+            protocolo.Requerente = textBox_Requerente.Text;
+            protocolo.CpfCnpj = textBox_CpfCnpj.Text;
+            protocolo.Telefone = textBox_Telefone.Text;
+            protocolo.Atendente = textBox_Atendente.Text;
+            protocolo.Retirada = DateOnly.FromDateTime(datePicker_Retirada.Value);
+            protocolo.HorarioRetirada = timePicker.Value;
+            protocolo.IdProvisorio = string.IsNullOrEmpty(textBox_ReciboProv.Text) ? null : Convert.ToInt32(textBox_ReciboProv.Text);
+
+            // Generate the document
+            ProtocoloRetiradaPdfDocument document = new(protocolo);
+
+            // Generate and show the PDF file
+            try
+            {
+                pdfService.GenerateProtocoloRetiradaPdfAndShow(document);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro ao gerar o arquivo. Verifique se os campos do requerente estão preenchidos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void checkBox_ProtocoloLivro_KeyDown(object sender, KeyEventArgs e)
+        private void button_Limpar_Click(object sender, EventArgs e)
         {
-            // Checks when Enter key is pressed.
-            if (e.KeyCode == Keys.Enter)
-            {
-                checkBox_ProtocoloLivro.Checked = !checkBox_ProtocoloLivro.Checked;
-            }
+            // Clears all fields and data
+            textBox_Requerente.Clear();
+            textBox_ReciboProv.Clear();
+            textBox_CpfCnpj.Clear();
+            textBox_Telefone.Clear();
+            textBox_Atendente.Clear();
+            textBox_TipoRegistro.Clear();
+            textBox_PartesCertidao.Clear();
+            textBox_CpfDele.Clear();
+            textBox_Descricao.Clear();
+            textBox_Valor.Clear();
+            checkBox_ReciboProvisorio.Checked = false;
+            checkBox_ProtocoloLivro.Checked = false;
+            checkBox_Cpf.Checked = false;
+            numericUpDown_Certidao.Value = 1;
+            datePicker_Retirada.Value = DateTime.Today;
+            timePicker.Value = DateTime.Today.AddHours(14);
+            // Remove all items from ProtocoloRetirada and ProtocoloLivro
+            protocolo.ProtocoloRetirada.Clear();
+            protocolo.ProtocoloLivro.Clear();
+            // Updates Total label
+            label_Total.Text = "Total: " + protocolo.Total.ToString("C");
         }
 
-        private void checkBox_Cpf_KeyDown(object sender, KeyEventArgs e)
+        private void checkBox_ReciboProvisorio_CheckedChanged(object sender, EventArgs e)
         {
-            // Checks when Enter key is pressed.
-            if (e.KeyCode == Keys.Enter)
+            if (checkBox_ReciboProvisorio.Checked)
             {
-                checkBox_Cpf.Checked = !checkBox_Cpf.Checked;
+                label_NumeroReciboProv.Visible = true;
+                textBox_ReciboProv.Visible = true;
+            }
+            else
+            {
+                label_NumeroReciboProv.Visible = false;
+                textBox_ReciboProv.Visible = false;
+                textBox_ReciboProv.Clear();
             }
         }
 
@@ -318,30 +294,85 @@ namespace GeradorProtocolo
             }
         }
 
-        private void button_Limpar_Click(object sender, EventArgs e)
+        private void checkBox_ReciboProvisorio_KeyDown(object sender, KeyEventArgs e)
         {
-            // Clears all fields and data
-            textBox_Requerente.Clear();
-            textBox_ReciboProv.Clear();
-            textBox_CpfCnpj.Clear();
-            textBox_Telefone.Clear();
-            textBox_Atendente.Clear();
-            textBox_TipoRegistro.Clear();
-            textBox_PartesCertidao.Clear();
-            textBox_CpfDele.Clear();
-            textBox_Descricao.Clear();
-            textBox_Valor.Clear();
-            checkBox_ReciboProvisorio.Checked = false;
-            checkBox_ProtocoloLivro.Checked = false;
-            checkBox_Cpf.Checked = false;
-            numericUpDown_Certidao.Value = 1;
-            datePicker_Retirada.Value = DateTime.Today;
-            timePicker.Value = DateTime.Today.AddHours(14);
-            // Remove all items from ProtocoloRetirada and ProtocoloLivro
-            protocolo.ProtocoloRetirada.Clear();
-            protocolo.ProtocoloLivro.Clear();
-            // Updates Total label
-            label_Total.Text = "Total: " + protocolo.Total.ToString("C");
+            // Checks when Enter key is pressed.
+            if (e.KeyCode == Keys.Enter)
+            {
+                checkBox_ReciboProvisorio.Checked = !checkBox_ReciboProvisorio.Checked;
+            }
+        }
+
+        private void checkBox_ProtocoloLivro_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Checks when Enter key is pressed.
+            if (e.KeyCode == Keys.Enter)
+            {
+                checkBox_ProtocoloLivro.Checked = !checkBox_ProtocoloLivro.Checked;
+            }
+        }
+
+        private void checkBox_Cpf_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Checks when Enter key is pressed.
+            if (e.KeyCode == Keys.Enter)
+            {
+                checkBox_Cpf.Checked = !checkBox_Cpf.Checked;
+            }
+        }
+
+        private void textBox_CpfCnpj_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow only numbers and backspace.
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox_Valor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow only numbers, ., ,, and backspace.
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox_ReciboProv_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow only numbers and backspace.
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox_Telefone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allows only numbers and backspace
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox_CpfDele_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allows only numbers and backspace
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox_CpfDela_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allows only numbers and backspace
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         private void textBox_CpfCnpj_Leave(object sender, EventArgs e)
@@ -398,33 +429,6 @@ namespace GeradorProtocolo
                 MessageBox.Show("O formato de número informado não é válido. Verifique e tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 textBox_Telefone.Clear();
                 textBox_Telefone.Focus();
-            }
-        }
-
-        private void textBox_Telefone_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Allows only numbers and backspace
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void textBox_CpfDele_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Allows only numbers and backspace
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void textBox_CpfDela_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Allows only numbers and backspace
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
             }
         }
 
