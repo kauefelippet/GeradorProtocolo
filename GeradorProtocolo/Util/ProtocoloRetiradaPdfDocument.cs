@@ -61,7 +61,24 @@ namespace GeradorProtocolo.Util
                     column.Item().Text(text =>
                     {
                         text.Span("Interessado: ").FontSize(10).Bold();
-                        text.Span($"{protocolo.Requerente}  -  {protocolo.CpfCnpj}").FontSize(10);
+                        text.Span(protocolo.Requerente).FontSize(10);
+                    });
+                    column.Item().Text(text =>
+                    {
+                        if (!string.IsNullOrEmpty(protocolo.CpfCnpj))
+                        {
+                            if (Validation.ValidateCPF(protocolo.CpfCnpj))
+                            {
+                                text.Span("CPF: ").FontSize(10).Bold();
+                                text.Span(protocolo.CpfCnpj).FontSize(10);
+                            }
+                            else
+                            {
+                                text.Span("CNPJ: ").FontSize(10).Bold();
+                                text.Span(protocolo.CpfCnpj).FontSize(10);
+                            }
+
+                        }
                     });
                     if (protocolo.IdProvisorio.HasValue)
                         column.Item().Text($"Recibo Provisório nº {protocolo.IdProvisorio}").FontSize(10).Bold();
@@ -147,12 +164,30 @@ namespace GeradorProtocolo.Util
                             text.Span("Valor: ").FontSize(12).Bold();
                             text.Span($"{item.Valor:C}  -  {protocolo.Atendente}").FontSize(12);
                         });
-                        if (!string.IsNullOrEmpty(item.CpfParte))
+                        if (!string.IsNullOrEmpty(item.CpfParte) && !string.IsNullOrEmpty(item.CpfParte2))
+                        {
                             column.Item().Text(text =>
                             {
-                                text.Span("CPF(s): ").FontSize(11).Bold();
+                                text.Span("CPFs: ").FontSize(11).Bold();
+                                text.Span($"{item.CpfParte} e {item.CpfParte2}").FontSize(11);
+                            });
+                        }
+                        else if (!string.IsNullOrEmpty(item.CpfParte))
+                        {
+                            column.Item().Text(text =>
+                            {
+                                text.Span("CPF 1: ").FontSize(11).Bold();
                                 text.Span(item.CpfParte).FontSize(11);
                             });
+                        }
+                        else if (!string.IsNullOrEmpty(item.CpfParte2))
+                        {
+                            column.Item().Text(text =>
+                            {
+                                text.Span("CPF 2: ").FontSize(11).Bold();
+                                text.Span(item.CpfParte2).FontSize(11);
+                            });
+                        }
                         column.Item().Text(text =>
                         {
                             text.Span("Recibo: ").FontSize(11).Bold();

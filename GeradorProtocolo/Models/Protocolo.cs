@@ -5,7 +5,7 @@ namespace GeradorProtocolo.Models
     public class Protocolo
     {
         public string Requerente { get; set; }
-        public string CpfCnpj { get; set; }
+        public string? CpfCnpj { get; set; }
         public string? Telefone { get; set; }
         public int? IdProvisorio { get; set; }
         public string Atendente { get; set; }

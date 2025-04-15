@@ -38,10 +38,11 @@
             label_CpfCnpj = new Label();
             textBox_CpfCnpj = new TextBox();
             panel1 = new Panel();
+            textBox_CpfDela = new TextBox();
             button_Limpar = new Button();
             button_Editar = new Button();
             label_CpfPartes = new Label();
-            textBox_CpfPartes = new TextBox();
+            textBox_CpfDele = new TextBox();
             checkBox_Cpf = new CheckBox();
             label_HorarioRetirada = new Label();
             timePicker = new DateTimePicker();
@@ -125,13 +126,15 @@
             textBox_CpfCnpj.Size = new Size(200, 18);
             textBox_CpfCnpj.TabIndex = 3;
             textBox_CpfCnpj.KeyPress += textBox_CpfCnpj_KeyPress;
+            textBox_CpfCnpj.Leave += textBox_CpfCnpj_Leave;
             // 
             // panel1
             // 
+            panel1.Controls.Add(textBox_CpfDela);
             panel1.Controls.Add(button_Limpar);
             panel1.Controls.Add(button_Editar);
             panel1.Controls.Add(label_CpfPartes);
-            panel1.Controls.Add(textBox_CpfPartes);
+            panel1.Controls.Add(textBox_CpfDele);
             panel1.Controls.Add(checkBox_Cpf);
             panel1.Controls.Add(label_HorarioRetirada);
             panel1.Controls.Add(timePicker);
@@ -158,6 +161,21 @@
             panel1.Size = new Size(760, 395);
             panel1.TabIndex = 6;
             // 
+            // textBox_CpfDela
+            // 
+            textBox_CpfDela.BackColor = SystemColors.ControlLight;
+            textBox_CpfDela.BorderStyle = BorderStyle.None;
+            textBox_CpfDela.Font = new Font("Segoe UI", 9F);
+            textBox_CpfDela.ForeColor = Color.Black;
+            textBox_CpfDela.Location = new Point(428, 73);
+            textBox_CpfDela.Name = "textBox_CpfDela";
+            textBox_CpfDela.PlaceholderText = "CPF Parte 2 (se houver)";
+            textBox_CpfDela.Size = new Size(132, 16);
+            textBox_CpfDela.TabIndex = 11;
+            textBox_CpfDela.Visible = false;
+            textBox_CpfDela.KeyPress += textBox_CpfDela_KeyPress;
+            textBox_CpfDela.Leave += textBox_CpfDela_Leave;
+            // 
             // button_Limpar
             // 
             button_Limpar.BackColor = SystemColors.ControlLight;
@@ -166,7 +184,7 @@
             button_Limpar.Location = new Point(645, 176);
             button_Limpar.Name = "button_Limpar";
             button_Limpar.Size = new Size(115, 23);
-            button_Limpar.TabIndex = 20;
+            button_Limpar.TabIndex = 21;
             button_Limpar.Text = "Limpar Campos";
             button_Limpar.UseVisualStyleBackColor = false;
             button_Limpar.Click += button_Limpar_Click;
@@ -179,7 +197,7 @@
             button_Editar.Location = new Point(84, 175);
             button_Editar.Name = "button_Editar";
             button_Editar.Size = new Size(79, 23);
-            button_Editar.TabIndex = 17;
+            button_Editar.TabIndex = 18;
             button_Editar.Text = "Editar";
             button_Editar.UseVisualStyleBackColor = false;
             button_Editar.Click += button_Editar_Click;
@@ -198,18 +216,20 @@
             label_CpfPartes.TextAlign = ContentAlignment.MiddleLeft;
             label_CpfPartes.Visible = false;
             // 
-            // textBox_CpfPartes
+            // textBox_CpfDele
             // 
-            textBox_CpfPartes.BackColor = SystemColors.ControlLight;
-            textBox_CpfPartes.BorderStyle = BorderStyle.None;
-            textBox_CpfPartes.Font = new Font("Segoe UI", 9F);
-            textBox_CpfPartes.ForeColor = Color.Black;
-            textBox_CpfPartes.Location = new Point(290, 73);
-            textBox_CpfPartes.Name = "textBox_CpfPartes";
-            textBox_CpfPartes.PlaceholderText = "XXX.XXX.XXX-XX // XXX.XXX.XXX-XX";
-            textBox_CpfPartes.Size = new Size(318, 16);
-            textBox_CpfPartes.TabIndex = 10;
-            textBox_CpfPartes.Visible = false;
+            textBox_CpfDele.BackColor = SystemColors.ControlLight;
+            textBox_CpfDele.BorderStyle = BorderStyle.None;
+            textBox_CpfDele.Font = new Font("Segoe UI", 9F);
+            textBox_CpfDele.ForeColor = Color.Black;
+            textBox_CpfDele.Location = new Point(290, 73);
+            textBox_CpfDele.Name = "textBox_CpfDele";
+            textBox_CpfDele.PlaceholderText = "CPF Parte 1";
+            textBox_CpfDele.Size = new Size(132, 16);
+            textBox_CpfDele.TabIndex = 10;
+            textBox_CpfDele.Visible = false;
+            textBox_CpfDele.KeyPress += textBox_CpfDele_KeyPress;
+            textBox_CpfDele.Leave += textBox_CpfDele_Leave;
             // 
             // checkBox_Cpf
             // 
@@ -251,7 +271,7 @@
             timePicker.RightToLeft = RightToLeft.No;
             timePicker.ShowUpDown = true;
             timePicker.Size = new Size(55, 23);
-            timePicker.TabIndex = 15;
+            timePicker.TabIndex = 16;
             timePicker.Value = new DateTime(2025, 3, 18, 14, 0, 0, 0);
             // 
             // label_Total
@@ -288,7 +308,7 @@
             button_Gerar.Location = new Point(254, 175);
             button_Gerar.Name = "button_Gerar";
             button_Gerar.Size = new Size(115, 23);
-            button_Gerar.TabIndex = 19;
+            button_Gerar.TabIndex = 20;
             button_Gerar.Text = "Gerar Protocolo";
             button_Gerar.UseVisualStyleBackColor = false;
             button_Gerar.Click += button_Gerar_Click;
@@ -301,7 +321,7 @@
             button_Remover.Location = new Point(169, 175);
             button_Remover.Name = "button_Remover";
             button_Remover.Size = new Size(79, 23);
-            button_Remover.TabIndex = 18;
+            button_Remover.TabIndex = 19;
             button_Remover.Text = "Remover";
             button_Remover.UseVisualStyleBackColor = false;
             button_Remover.Click += button_Remover_Click;
@@ -314,7 +334,7 @@
             button_Adicionar.Location = new Point(0, 175);
             button_Adicionar.Name = "button_Adicionar";
             button_Adicionar.Size = new Size(77, 23);
-            button_Adicionar.TabIndex = 16;
+            button_Adicionar.TabIndex = 17;
             button_Adicionar.Text = "Adicionar";
             button_Adicionar.UseVisualStyleBackColor = false;
             button_Adicionar.Click += button_Adicionar_Click;
@@ -367,7 +387,7 @@
             dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView.Size = new Size(760, 196);
-            dataGridView.TabIndex = 21;
+            dataGridView.TabIndex = 22;
             dataGridView.CellClick += dataGridView_CellClick;
             // 
             // label_RetiradaCertidao
@@ -394,7 +414,7 @@
             datePicker_Retirada.Location = new Point(169, 148);
             datePicker_Retirada.Name = "datePicker_Retirada";
             datePicker_Retirada.Size = new Size(115, 23);
-            datePicker_Retirada.TabIndex = 14;
+            datePicker_Retirada.TabIndex = 15;
             // 
             // textBox_TipoRegistro
             // 
@@ -433,7 +453,7 @@
             textBox_Descricao.Name = "textBox_Descricao";
             textBox_Descricao.PlaceholderText = "Lº , fls., nº ";
             textBox_Descricao.Size = new Size(284, 16);
-            textBox_Descricao.TabIndex = 11;
+            textBox_Descricao.TabIndex = 12;
             // 
             // label_RefRegistro
             // 
@@ -456,7 +476,7 @@
             numericUpDown_Certidao.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericUpDown_Certidao.Name = "numericUpDown_Certidao";
             numericUpDown_Certidao.Size = new Size(79, 19);
-            numericUpDown_Certidao.TabIndex = 13;
+            numericUpDown_Certidao.TabIndex = 14;
             numericUpDown_Certidao.TextAlign = HorizontalAlignment.Center;
             numericUpDown_Certidao.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
@@ -483,7 +503,7 @@
             textBox_Valor.Location = new Point(0, 151);
             textBox_Valor.Name = "textBox_Valor";
             textBox_Valor.Size = new Size(77, 17);
-            textBox_Valor.TabIndex = 12;
+            textBox_Valor.TabIndex = 13;
             textBox_Valor.KeyPress += textBox_Valor_KeyPress;
             // 
             // label_ValorCertidao
@@ -603,6 +623,8 @@
             textBox_Telefone.Name = "textBox_Telefone";
             textBox_Telefone.Size = new Size(190, 18);
             textBox_Telefone.TabIndex = 4;
+            textBox_Telefone.KeyPress += textBox_Telefone_KeyPress;
+            textBox_Telefone.Leave += textBox_Telefone_Leave;
             // 
             // label_Telefone
             // 
@@ -683,11 +705,12 @@
         private Label label_HorarioRetirada;
         private DateTimePicker timePicker;
         private Label label_CpfPartes;
-        private TextBox textBox_CpfPartes;
+        private TextBox textBox_CpfDele;
         private CheckBox checkBox_Cpf;
         private TextBox textBox_Telefone;
         private Label label_Telefone;
         private Button button_Editar;
         private Button button_Limpar;
+        private TextBox textBox_CpfDela;
     }
 }

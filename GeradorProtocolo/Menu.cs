@@ -62,7 +62,8 @@ namespace GeradorProtocolo
                 {
                     TipoRegistro = textBox_TipoRegistro.Text,
                     NomeParte = textBox_PartesCertidao.Text,
-                    CpfParte = textBox_CpfPartes.Text,
+                    CpfParte = textBox_CpfDele.Text,
+                    CpfParte2 = textBox_CpfDela.Text,
                     Descricao = textBox_Descricao.Text,
                     Valor = Convert.ToDouble(textBox_Valor.Text),
                     Quantidade = (int)numericUpDown_Certidao.Value,
@@ -100,8 +101,8 @@ namespace GeradorProtocolo
 
         private void textBox_CpfCnpj_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Allow only numbers, -, ., /, and backspace.
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '-' && e.KeyChar != '.' && e.KeyChar != '/')
+            // Allow only numbers and backspace.
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -145,6 +146,12 @@ namespace GeradorProtocolo
                 MessageBox.Show("O campo do requerente está vazio. Preencha-o antes de gerar o PDF.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            // Check if textBox_Atendente is empty
+            if (string.IsNullOrEmpty(textBox_Atendente.Text))
+            {
+                MessageBox.Show("O campo do atendente está vazio. Preencha-o antes de gerar o PDF.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             // Generate the PDF document
             protocolo.Requerente = textBox_Requerente.Text;
@@ -178,12 +185,14 @@ namespace GeradorProtocolo
             textBox_TipoRegistro.Text = item.TipoRegistro;
             textBox_PartesCertidao.Text = item.NomeParte;
             checkBox_ProtocoloLivro.Checked = item.ProtocoloLivro;
-            checkBox_Cpf.Checked = !String.IsNullOrEmpty(item.CpfParte);
-            textBox_CpfPartes.Text = item.CpfParte;
+            checkBox_Cpf.Checked = !string.IsNullOrEmpty(item.CpfParte) || !string.IsNullOrEmpty(item.CpfParte2);
+            textBox_CpfDele.Text = item.CpfParte;
+            textBox_CpfDela.Text = item.CpfParte2;
             textBox_Descricao.Text = item.Descricao;
             textBox_Valor.Text = item.Valor.ToString();
             numericUpDown_Certidao.Value = item.Quantidade;
         }
+
         private void button_Editar_Click(object sender, EventArgs e)
         {
             if (ClickedRowIndex >= 0)
@@ -195,7 +204,8 @@ namespace GeradorProtocolo
 
                     item.TipoRegistro = textBox_TipoRegistro.Text;
                     item.NomeParte = textBox_PartesCertidao.Text;
-                    item.CpfParte = textBox_CpfPartes.Text;
+                    item.CpfParte = textBox_CpfDele.Text;
+                    item.CpfParte2 = textBox_CpfDela.Text;
                     item.Descricao = textBox_Descricao.Text;
                     item.Valor = Convert.ToDouble(textBox_Valor.Text);
                     item.Quantidade = (int)numericUpDown_Certidao.Value;
@@ -295,13 +305,16 @@ namespace GeradorProtocolo
             if (checkBox_Cpf.Checked)
             {
                 label_CpfPartes.Visible = true;
-                textBox_CpfPartes.Visible = true;
+                textBox_CpfDele.Visible = true;
+                textBox_CpfDela.Visible = true;
             }
             else
             {
                 label_CpfPartes.Visible = false;
-                textBox_CpfPartes.Visible = false;
-                textBox_CpfPartes.Clear();
+                textBox_CpfDele.Visible = false;
+                textBox_CpfDela.Visible = false;
+                textBox_CpfDele.Clear();
+                textBox_CpfDela.Clear();
             }
         }
 
@@ -315,7 +328,7 @@ namespace GeradorProtocolo
             textBox_Atendente.Clear();
             textBox_TipoRegistro.Clear();
             textBox_PartesCertidao.Clear();
-            textBox_CpfPartes.Clear();
+            textBox_CpfDele.Clear();
             textBox_Descricao.Clear();
             textBox_Valor.Clear();
             checkBox_ReciboProvisorio.Checked = false;
@@ -329,6 +342,126 @@ namespace GeradorProtocolo
             protocolo.ProtocoloLivro.Clear();
             // Updates Total label
             label_Total.Text = "Total: " + protocolo.Total.ToString("C");
+        }
+
+        private void textBox_CpfCnpj_Leave(object sender, EventArgs e)
+        {
+            // Identify if is CNPJ or CPF
+            if (String.IsNullOrEmpty(textBox_CpfCnpj.Text))
+            {
+                return;
+            }
+            else if (Validation.ValidateCPF(textBox_CpfCnpj.Text))
+            {
+                if (textBox_CpfCnpj.Text.Length == 11)
+                {
+                    textBox_CpfCnpj.Text = Convert.ToUInt64(textBox_CpfCnpj.Text).ToString(@"000\.000\.000\-00");
+                }
+                label_CpfCnpj.Text = "CPF: ";
+            }
+            else if (Validation.ValidateCNPJ(textBox_CpfCnpj.Text))
+            {
+                if (textBox_CpfCnpj.Text.Length == 14)
+                {
+                    textBox_CpfCnpj.Text = Convert.ToUInt64(textBox_CpfCnpj.Text).ToString(@"00\.000\.000\/0000\-00");
+                }
+                label_CpfCnpj.Text = "CNPJ: ";
+            }
+            else
+            {
+                MessageBox.Show("O CPF ou CNPJ informado não é válido. Verifique e tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox_CpfCnpj.Clear();
+                textBox_CpfCnpj.Focus();
+            }
+        }
+
+        private void textBox_Telefone_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBox_Telefone.Text))
+            {
+                return;
+            }
+
+            // Remove any existing formatting before validating and reformatting
+            string telefone = new string(textBox_Telefone.Text.Where(char.IsDigit).ToArray());
+
+            if (telefone.Length == 10)
+            {
+                textBox_Telefone.Text = Convert.ToUInt64(telefone).ToString(@"\(00\)\ 0000\-0000");
+            }
+            else if (telefone.Length == 11)
+            {
+                textBox_Telefone.Text = Convert.ToUInt64(telefone).ToString(@"\(00\)\ 00000\-0000");
+            }
+            else
+            {
+                MessageBox.Show("O formato de número informado não é válido. Verifique e tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox_Telefone.Clear();
+                textBox_Telefone.Focus();
+            }
+        }
+
+        private void textBox_Telefone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allows only numbers and backspace
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox_CpfDele_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allows only numbers and backspace
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox_CpfDela_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allows only numbers and backspace
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox_CpfDele_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBox_CpfDele.Text)) { return; }
+            if (Validation.ValidateCPF(textBox_CpfDele.Text))
+            {
+                if (textBox_CpfDele.Text.Length == 11)
+                {
+                    textBox_CpfDele.Text = Convert.ToUInt64(textBox_CpfDele.Text).ToString(@"000\.000\.000\-00");
+                }
+            }
+            else
+            {
+                MessageBox.Show("O CPF informado não é válido. Verifique e tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox_CpfDele.Clear();
+                textBox_CpfDele.Focus();
+            }
+        }
+
+        private void textBox_CpfDela_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBox_CpfDela.Text)) { return; }
+            if (Validation.ValidateCPF(textBox_CpfDela.Text))
+            {
+                if (textBox_CpfDela.Text.Length == 11)
+                {
+                    textBox_CpfDela.Text = Convert.ToUInt64(textBox_CpfDela.Text).ToString(@"000\.000\.000\-00");
+                }
+            }
+            else
+            {
+                MessageBox.Show("O CPF informado não é válido. Verifique e tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox_CpfDela.Clear();
+                textBox_CpfDela.Focus();
+            }
         }
     }
 }
